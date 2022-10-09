@@ -60,7 +60,5 @@ public class MainMenu implements Initializable {
         // sets ZoneID according to users locale
         Locale currentLocale = Locale.getDefault();
         zoneId.setText(currentLocale.getDisplayCountry());
-
-        // TODO: translate GUI according to users locale
     }
 }

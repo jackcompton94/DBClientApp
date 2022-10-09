@@ -1,12 +1,17 @@
 package main;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import helper.JDBC;
 import javafx.stage.StageStyle;
+
+import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
 
@@ -18,11 +23,19 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
         JDBC.makeConnection();
-
         launch(args);
+
+        // language translator
+
+        ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
+
+        if (Locale.getDefault().equals("fr")) {
+            System.out.println("french locale detected");
+        }
+
+
 
         JDBC.closeConnection();
     }

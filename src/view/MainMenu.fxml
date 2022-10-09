@@ -32,7 +32,7 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="14.0" layoutY="14.0" text="Log in to Scheduler" textFill="#233142">
+            <Label fx:id="schedulerLogin" layoutX="14.0" layoutY="14.0" text="Scheduler Login" textFill="#233142">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
