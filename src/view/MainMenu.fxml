@@ -13,7 +13,7 @@
          <children>
             <TextField fx:id="userIdText" layoutX="38.0" layoutY="104.0" prefHeight="25.0" prefWidth="215.0">
                <font>
-                  <Font name="Arial" size="12.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </TextField>
             <PasswordField fx:id="passwordText" layoutX="38.0" layoutY="167.0" prefHeight="25.0" prefWidth="215.0" />

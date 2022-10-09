@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainMenu implements Initializable {
@@ -29,9 +30,11 @@ public class MainMenu implements Initializable {
     @FXML
     private Label invalidLogin;
 
+    @FXML
+    private Label zoneId;
 
     // learn CSS events in Java
-    // learn Zone ID & language awareness
+    // add language awareness
 
     public void onActionSignIn(ActionEvent actionEvent) {
         if ((userIdText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
@@ -52,7 +55,10 @@ public class MainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("successfully loaded controller");
         invalidLogin.setVisible(false);
+
+        // sets ZoneID according to users locale
+        Locale currentLocale = Locale.getDefault();
+        zoneId.setText(currentLocale.getCountry());
     }
 }

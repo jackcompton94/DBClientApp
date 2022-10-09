@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import helper.JDBC;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
