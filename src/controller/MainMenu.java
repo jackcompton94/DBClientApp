@@ -79,9 +79,6 @@ public class MainMenu implements Initializable {
                 password.setText(rb.getString("Password"));
                 signInButton.setText(rb.getString("SignIn"));
             }
-        } catch (Exception e){
-
-        }
-
+        } catch(Exception e) { }
     }
 }
