@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
         primaryStage.setTitle("Scheduler");
-        primaryStage.setScene(new Scene(root, 540, 395));
+        primaryStage.setScene(new Scene(root, 460, 360));
         primaryStage.show();
     }
 
