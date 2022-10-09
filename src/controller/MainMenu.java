@@ -20,9 +20,6 @@ public class MainMenu implements Initializable {
     Parent scene;
 
     @FXML
-    private Button signInButton;
-
-    @FXML
     private TextField userIdText;
 
     @FXML
@@ -35,9 +32,16 @@ public class MainMenu implements Initializable {
     private Label zoneId;
 
     @FXML
+    private Button signInButton;
+
+    @FXML
     private Label schedulerLogin;
 
-    // learn CSS events in Java
+    @FXML
+    private Label userId;
+
+    @FXML
+    private Label password;
 
     public void onActionSignIn(ActionEvent actionEvent) {
         if ((userIdText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
@@ -58,6 +62,7 @@ public class MainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // hides invalidLogin alert
         invalidLogin.setVisible(false);
 
         // sets ZoneID according to users locale
@@ -65,11 +70,18 @@ public class MainMenu implements Initializable {
         zoneId.setText(currentLocale.getDisplayCountry());
 
         // language translator
-        ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
+            if (Locale.getDefault().getLanguage().equals("fr")) {
+                schedulerLogin.setText((rb.getString("SchedulerLogin")));
+                invalidLogin.setText(rb.getString("InvalidLogin"));
+                userId.setText(rb.getString("UserId"));
+                password.setText(rb.getString("Password"));
+                signInButton.setText(rb.getString("SignIn"));
+            }
+        } catch (Exception e){
 
-        if (Locale.getDefault().getLanguage().equals("fr")) {
-            System.out.println("french locale detected");
-            schedulerLogin.setText((rb.getString("Scheduler")) + " " + rb.getString("Login"));
         }
+
     }
 }
