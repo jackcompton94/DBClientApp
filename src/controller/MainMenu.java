@@ -34,6 +34,9 @@ public class MainMenu implements Initializable {
     @FXML
     private Label zoneId;
 
+    @FXML
+    private Label schedulerLogin;
+
     // learn CSS events in Java
 
     public void onActionSignIn(ActionEvent actionEvent) {
@@ -60,5 +63,13 @@ public class MainMenu implements Initializable {
         // sets ZoneID according to users locale
         Locale currentLocale = Locale.getDefault();
         zoneId.setText(currentLocale.getDisplayCountry());
+
+        // language translator
+        ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
+
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            System.out.println("french locale detected");
+            schedulerLogin.setText((rb.getString("Scheduler")) + " " + rb.getString("Login"));
+        }
     }
 }

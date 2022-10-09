@@ -25,18 +25,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.makeConnection();
+
         launch(args);
-
-        // language translator
-
-        ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
-
-        if (Locale.getDefault().equals("fr")) {
-            System.out.println("french locale detected");
-        }
-
-
-
         JDBC.closeConnection();
     }
 }
