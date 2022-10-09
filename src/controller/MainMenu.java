@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,7 +35,6 @@ public class MainMenu implements Initializable {
     private Label zoneId;
 
     // learn CSS events in Java
-    // add language awareness
 
     public void onActionSignIn(ActionEvent actionEvent) {
         if ((userIdText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
@@ -59,6 +59,8 @@ public class MainMenu implements Initializable {
 
         // sets ZoneID according to users locale
         Locale currentLocale = Locale.getDefault();
-        zoneId.setText(currentLocale.getCountry());
+        zoneId.setText(currentLocale.getDisplayCountry());
+
+        // TODO: translate GUI according to users locale
     }
 }
