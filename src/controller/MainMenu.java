@@ -44,6 +44,7 @@ public class MainMenu implements Initializable {
     private Label password;
 
     public void onActionSignIn(ActionEvent actionEvent) {
+        // test userID & password
         if ((userIdText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
             System.out.println("valid credentials");
             invalidLogin.setVisible(false);
@@ -79,6 +80,6 @@ public class MainMenu implements Initializable {
                 password.setText(rb.getString("Password"));
                 signInButton.setText(rb.getString("SignIn"));
             }
-        } catch(Exception e) { }
+        } catch(Exception e) {  }
     }
 }
