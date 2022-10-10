@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="460.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SchedulerLogin">
    <children>
-      <AnchorPane layoutX="40.0" layoutY="38.0" prefHeight="276.0" prefWidth="380.0" style="-fx-border-color: #A9A9A9; -fx-background-color: #eeeeee; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 1; -fx-border-color: #000000;">
+      <AnchorPane layoutX="40.0" layoutY="38.0" prefHeight="276.0" prefWidth="380.0" style="-fx-border-color: #A9A9A9; -fx-background-color: #f2f2f2; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 1; -fx-border-color: #000000;">
          <children>
             <TextField fx:id="usernameText" layoutX="83.0" layoutY="106.0" prefHeight="25.0" prefWidth="215.0">
                <font>
