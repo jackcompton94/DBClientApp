@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Appointments implements Initializable {
+public class ViewAppointments implements Initializable {
 
     Parent scene;
 
