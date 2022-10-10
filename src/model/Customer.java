@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Customers {
+public class Customer {
     private int customerId;
     private String customerName;
     private String address;
@@ -15,16 +15,7 @@ public class Customers {
     private String lastUpdatedBy;
     private int divisionId;
 
-    public Customers(int customerId,
-                     String customerName,
-                     String address,
-                     String postalCode,
-                     String phone,
-                     Date createDate,
-                     String createdBy,
-                     Timestamp lastUpdate,
-                     String lastUpdatedBy,
-                     int divisionId) {
+    public Customer(int customerId, String customerName, String address, String postalCode, String phone, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;

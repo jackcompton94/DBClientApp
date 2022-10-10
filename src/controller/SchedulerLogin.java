@@ -80,7 +80,7 @@ public class SchedulerLogin implements Initializable {
 
         // language translator
         try {
-            ResourceBundle rb = ResourceBundle.getBundle("main/language", Locale.getDefault());
+            ResourceBundle rb = ResourceBundle.getBundle("languages/language", Locale.getDefault());
             if (Locale.getDefault().getLanguage().equals("fr")) {
                 schedulerLogin.setText((rb.getString("SchedulerLogin")));
                 invalidLogin.setText(rb.getString("InvalidLogin"));

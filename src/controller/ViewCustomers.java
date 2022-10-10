@@ -1,6 +1,6 @@
 package controller;
 
-import dataAccess.accessCustomers;
+import databaseAccess.accessCustomers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import model.Customers;
+import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class ViewCustomers implements Initializable {
 
-    public TableView customerTable;
+    public TableView customerTableView;
     public TableColumn customerIdCol;
     public TableColumn customerNameCol;
     public TableColumn addressCol;
@@ -30,10 +30,7 @@ public class ViewCustomers implements Initializable {
     public TableColumn lastUpdateCol;
     public TableColumn lastUpdatedByCol;
     public TableColumn divisionIdCol;
-
     Parent scene;
-
-
 
     public void back(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -45,19 +42,19 @@ public class ViewCustomers implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        customerTable.set
-        ObservableList<Customers> customerList = accessCustomers.getAllCustomers();
-        for(Customers customers : customerList) {
-            customers.getCustomerId();
-            customers.getCustomerName();
-            customers.getAddress();
-            customers.getPostalCode();
-            customers.getPhone();
-            customers.getCreateDate();
-            customers.getCreatedBy();
-            customers.getLastUpdate();
-            customers.getLastUpdatedBy();
-            customers.getDivisionId();
+        //TODO: learn how to populate customerTable with the observable list
+        ObservableList<Customer> customerList = accessCustomers.getAllCustomers();
+        for(Customer customers : customerList) {
+            System.out.println(customers.getCustomerId());
+            System.out.println(customers.getCustomerName());
+            System.out.println(customers.getAddress());
+            System.out.println(customers.getPostalCode());
+            System.out.println(customers.getPhone());
+            System.out.println(customers.getCreateDate());
+            System.out.println(customers.getCreatedBy());
+            System.out.println(customers.getLastUpdate());
+            System.out.println(customers.getLastUpdatedBy());
+            System.out.println(customers.getDivisionId());
         }
     }
 }

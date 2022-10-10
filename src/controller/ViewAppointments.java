@@ -25,6 +25,5 @@ public class ViewAppointments implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
