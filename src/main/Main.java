@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import helper.JDBC;
 
+import java.util.Locale;
+
 public class Main extends Application {
 
     @Override

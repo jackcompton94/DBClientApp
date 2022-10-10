@@ -24,7 +24,7 @@ public class SchedulerLogin implements Initializable {
     Parent scene;
 
     @FXML
-    private TextField userIdText;
+    private TextField usernameText;
 
     @FXML
     private PasswordField passwordText;
@@ -42,24 +42,24 @@ public class SchedulerLogin implements Initializable {
     private Label schedulerLogin;
 
     @FXML
-    private Label userId;
+    private Label username;
 
     @FXML
     private Label password;
 
     public void onActionSignIn(ActionEvent actionEvent) throws IOException {
-        // test userID & password
-        if ((userIdText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
+        // test username & password
+        /*if ((usernameText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
             System.out.println("valid credentials");
-            invalidLogin.setVisible(false);
+            invalidLogin.setVisible(false);*/
 
             // prompts MainMenu if login was successful
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
-        }
-        else if ((userIdText.getText().isEmpty()) || passwordText.getText().isEmpty()) {
+        }/*
+        else if ((username.getText().isEmpty()) || passwordText.getText().isEmpty()) {
             System.out.println("need credentials");
             invalidLogin.setVisible(true);
         }
@@ -67,14 +67,14 @@ public class SchedulerLogin implements Initializable {
             System.out.println("invalid credentials");
             invalidLogin.setVisible(true);
         }
-    }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // hides invalidLogin alert
         invalidLogin.setVisible(false);
 
-        // sets ZoneID according to users locale
+        // sets ZoneID according to users OS locale
         Locale currentLocale = Locale.getDefault();
         zoneId.setText(currentLocale.getDisplayCountry());
 
@@ -84,7 +84,7 @@ public class SchedulerLogin implements Initializable {
             if (Locale.getDefault().getLanguage().equals("fr")) {
                 schedulerLogin.setText((rb.getString("SchedulerLogin")));
                 invalidLogin.setText(rb.getString("InvalidLogin"));
-                userId.setText(rb.getString("UserId"));
+                username.setText(rb.getString("Username"));
                 password.setText(rb.getString("Password"));
                 signInButton.setText(rb.getString("SignIn"));
             }
