@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenu">
    <children>
-      <AnchorPane layoutX="53.0" layoutY="67.0" prefHeight="120.0" prefWidth="294.0" style="-fx-border-color: #A9A9A9; -fx-background-color: #f2f2f2; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 1; -fx-border-color: #000000;">
+      <AnchorPane layoutX="53.0" layoutY="67.0" prefHeight="120.0" prefWidth="294.0" style="-fx-border-color: #A9A9A9; -fx-background-color: #f3fbff; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 1; -fx-border-color: #000000;">
          <children>
             <Button fx:id="viewAppointmentsButton" layoutX="47.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewAppointments" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #1E90FF; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="View Appointments" textFill="GHOSTWHITE">
                <font>
