@@ -12,15 +12,12 @@ public class accessCustomers {
     public static ObservableList<Customer> getAllCustomers() {
 
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
-
         try{
-            String sql = "SELECT * FROM customers"; // query to pull all records from customers
+            String sql = "SELECT * FROM customers";                         // query to pull all records from customers
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);   // assigns the database connection whilst using the query above to ps
+            ResultSet rs = ps.executeQuery();                               // stores the result in rs
 
-            PreparedStatement ps = JDBC.connection.prepareStatement(sql); // assigns the database connection whilst using the query above to ps
-
-            ResultSet rs = ps.executeQuery();   // stores the result in rs
-
-            while(rs.next()){   // sorting through rs to assign fields to values within the application from the database
+            while(rs.next()){                                               // sorting through rs to assign fields to values within the application from the database
                 int customerId = rs.getInt("Customer_ID");
                 String customerName = rs.getString("Customer_Name");
                 String address = rs.getString("Address");
@@ -34,11 +31,9 @@ public class accessCustomers {
                 Customer c = new Customer(customerId, customerName, address, postalCode, phone, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId);
                 customerList.add(c);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return customerList;
     }
 }

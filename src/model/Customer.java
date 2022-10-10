@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Customer {
+
     private int customerId;
     private String customerName;
     private String address;
