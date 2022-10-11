@@ -65,7 +65,12 @@ public class ViewCustomers implements Initializable {
         stage.show();
     }
 
-    public void addCustomer(ActionEvent actionEvent) {
+    public void addCustomer(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/AddCustomer.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
         //TODO: when adding a customer, text fields are used to collect: customerName, address, postalCode, and phone
         //TODO: customerIds are auto-generated
         //TODO: first-level-division/country data are collected using separate combo-boxes
