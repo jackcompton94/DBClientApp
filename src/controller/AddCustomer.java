@@ -1,5 +1,6 @@
 package controller;
 
+import com.mysql.cj.protocol.WatchableStream;
 import databaseAccess.accessCountries;
 import databaseAccess.accessDivisions;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Country;
 import model.Division;
@@ -19,6 +21,18 @@ import java.util.ResourceBundle;
 
 
 public class AddCustomer implements Initializable {
+
+    @FXML
+    public TextField customerName;
+
+    @FXML
+    public TextField address;
+
+    @FXML
+    public TextField postalCode;
+
+    @FXML
+    public TextField phone;
 
     @FXML
     private ComboBox<Country> country;
@@ -35,7 +49,16 @@ public class AddCustomer implements Initializable {
 
     public void save(ActionEvent actionEvent){
         Country selectedCountry = country.getSelectionModel().getSelectedItem();
+        Division selectedDivision = division.getSelectionModel().getSelectedItem();
 
+        /*
+         = customerName.getText();
+         = address.getText();
+         = postalCode.getText();
+         = phone.getText();
+         = selectedCountry.getCountry();
+         = selectedDivision.getDivision();
+         */
     }
 
     @Override
