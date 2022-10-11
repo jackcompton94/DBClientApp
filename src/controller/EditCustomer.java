@@ -1,6 +1,7 @@
 package controller;
 
 import databaseAccess.accessCountries;
+import databaseAccess.accessDivisions;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,5 +68,6 @@ public class EditCustomer implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.setItems(accessCountries.getAllCountries());
+        division.setItems(accessDivisions.getAllDivisions());
     }
 }

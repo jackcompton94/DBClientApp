@@ -49,7 +49,6 @@ public class AddCustomer implements Initializable {
     }
 
     public void save(ActionEvent actionEvent){
-        Country selectedCountry = country.getSelectionModel().getSelectedItem();
         Division selectedDivision = division.getSelectionModel().getSelectedItem();
 
         /*
@@ -63,9 +62,29 @@ public class AddCustomer implements Initializable {
 
     }
 
+    public void selectCountry(ActionEvent actionEvent) {
+        division.setDisable(false);
+
+        Country selectedCountry = country.getSelectionModel().getSelectedItem();
+        int countryId = selectedCountry.getCountryId();
+
+        for (Division d : division.getItems()) {
+            if (countryId == d.getCountryId()) {
+                division.setValue(d);
+                //TODO: enable division ONLY where the condition above is met
+            }
+        }
+    }
+
+    public void selectDivision(ActionEvent actionEvent) {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.setItems(accessCountries.getAllCountries());
         division.setItems(accessDivisions.getAllDivisions());
+        division.setDisable(true); // initializes division ComboBox as disabled to force user to select a Country first
     }
+
+
 }
