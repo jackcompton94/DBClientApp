@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,8 +77,28 @@ public class ViewCustomers implements Initializable {
         //TODO: first-level-division/country data are collected using separate combo-boxes
     }
 
-    public void editCustomer(ActionEvent actionEvent) {
-        //TODO: when updating a customer, customer data must auto-populate the UpdateCustomerForm
+    public void editCustomer(ActionEvent actionEvent) throws IOException {
+        Customer selection = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (selection == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a Customer to edit!");
+            alert.showAndWait();
+        }
+        else {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/EditCustomer.fxml"));
+            loader.load();
+
+            // SENDS Product OBJECT TO ModifyProduct
+            EditCustomer EditCustomerController = loader.getController();
+            EditCustomerController.sendCustomer(customerTableView.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+
         //TODO: text fields are used to collect: customerName, address, postalCode, and phone
         //TODO: customerIds are disabled in UpdateCustomerForm
         //TODO: first-level-division/country data are collected using separate combo-boxes
