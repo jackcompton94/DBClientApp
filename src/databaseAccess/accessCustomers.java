@@ -4,7 +4,6 @@ import helper.JDBC;
 import javafx.collections.FXCollections;
 import model.Customer;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public abstract class accessCustomers {
@@ -48,7 +47,7 @@ public abstract class accessCustomers {
         return rowsAffected;
     }
 
-    public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) throws SQLException {
+    public static int update(String customerName, String address, String postalCode, String phone, int divisionId, int customerId) throws SQLException {
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
@@ -60,4 +59,5 @@ public abstract class accessCustomers {
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
+    // TODO: DELETE
 }

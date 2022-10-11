@@ -38,7 +38,9 @@ public class accessAppointments {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return appointmentList;
     }
+    // TODO: Insert
+    // TODO: Update
+    // TODO: Delete
 }

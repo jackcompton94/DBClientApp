@@ -1,6 +1,7 @@
 package controller;
 
 import databaseAccess.accessCountries;
+import databaseAccess.accessCustomers;
 import databaseAccess.accessDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,17 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Country;
 import model.Customer;
 import model.Division;
-
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class EditCustomer implements Initializable {
@@ -77,7 +75,24 @@ public class EditCustomer implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) {
-        //TODO: watch JDBC webinar on Updating databases
+        try {
+            String customerNameText = customerName.getText();
+            String addressText = address.getText();
+            String postalCodeText = postalCode.getText();
+            String phoneText = phone.getText();
+            Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
+            Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
+            Integer customerIdText = Integer.valueOf(customerId.getText());
+
+            accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, divisionIdText, customerIdText);
+            successLabel.setVisible(true);
+
+        } catch (NullPointerException | SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Format Error");
+            alert.setContentText("Please select a division.");
+            alert.showAndWait();
+        }
     }
 
     public void selectCountry(ActionEvent actionEvent) {

@@ -1,7 +1,6 @@
 package controller;
 
 import databaseAccess.accessCustomers;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -85,7 +83,7 @@ public class ViewCustomers implements Initializable {
             loader.setLocation(getClass().getResource("/view/EditCustomer.fxml"));
             loader.load();
 
-            // SENDS Product OBJECT TO ModifyProduct
+            // sends Customer object to EditCustomer
             EditCustomer EditCustomerController = loader.getController();
             EditCustomerController.sendCustomer(customerTableView.getSelectionModel().getSelectedItem());
 
@@ -94,10 +92,6 @@ public class ViewCustomers implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
         }
-
-        //TODO: text fields are used to collect: customerName, address, postalCode, and phone
-        //TODO: customerIds are disabled in UpdateCustomerForm
-        //TODO: first-level-division/country data are collected using separate combo-boxes
     }
 
     public void deleteCustomer(ActionEvent actionEvent) {

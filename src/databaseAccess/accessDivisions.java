@@ -4,7 +4,6 @@ import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Division;
-
 import java.sql.*;
 
 public class accessDivisions {

@@ -11,10 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -48,6 +46,7 @@ public class SchedulerLogin implements Initializable {
     private Label password;
 
     public void onActionSignIn(ActionEvent actionEvent) throws IOException {
+        // TODO: create authentication logic around Users table
         // test username & password
         /*if ((usernameText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
             System.out.println("valid credentials");

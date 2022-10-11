@@ -1,6 +1,5 @@
 package controller;
 
-import com.mysql.cj.protocol.WatchableStream;
 import databaseAccess.accessCountries;
 import databaseAccess.accessCustomers;
 import databaseAccess.accessDivisions;

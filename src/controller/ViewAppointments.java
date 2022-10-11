@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -63,7 +62,6 @@ public class ViewAppointments implements Initializable {
 
     @FXML
     public TableColumn<Appointment, Integer> contactIdCol;
-
 
     Parent scene;
 
