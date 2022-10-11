@@ -20,6 +20,7 @@ import model.Country;
 import model.Division;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -50,18 +51,18 @@ public class AddCustomer implements Initializable {
         stage.show();
     }
 
-    public void save(ActionEvent actionEvent){
-        Division selectedDivision = division.getSelectionModel().getSelectedItem();
+    public void save(ActionEvent actionEvent) throws SQLException {
+         String customerNameText = customerName.getText();
+         String addressText = address.getText();
+         String postalCodeText = postalCode.getText();
+         String phoneText = phone.getText();
+         Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
+         Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
 
-        /*
-         = customerName.getText();
-         = address.getText();
-         = postalCode.getText();
-         = phone.getText();
-         = selectedCountry.getCountry();
-         = selectedDivision.getDivision();
-         */
+        accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, divisionIdText);
 
+        //TODO: add label to AddCustomer.fxml that flashes a successfully added customer
+        //TODO: add exception handling
     }
 
     public void selectCountry(ActionEvent actionEvent) {
@@ -80,7 +81,6 @@ public class AddCustomer implements Initializable {
             division.setItems(divisionsInCountry);
         }
     }
-
 
     public void selectDivision(ActionEvent actionEvent) {
     }
