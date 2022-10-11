@@ -1,5 +1,7 @@
 package controller;
 
+import databaseAccess.accessCountries;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Country;
 import model.Customer;
 
 import java.io.IOException;
@@ -45,6 +48,7 @@ public class EditCustomer implements Initializable {
         address.setText(String.valueOf(customer.getAddress()));
         postalCode.setText(String.valueOf(customer.getPostalCode()));
         phone.setText(String.valueOf(customer.getPhone()));
+
         //TODO: learn how to implement ComboBoxes
         // country
         // divisionId
@@ -62,8 +66,6 @@ public class EditCustomer implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        country.setItems(accessCountries.getAllCountries());
     }
-
-
 }

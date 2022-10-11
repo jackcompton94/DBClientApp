@@ -1,7 +1,7 @@
 package controller;
 
 import databaseAccess.accessCountries;
-import javafx.collections.ObservableList;
+import databaseAccess.accessDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import model.Country;
-
+import model.Division;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,9 +23,8 @@ public class AddCustomer implements Initializable {
     @FXML
     private ComboBox<Country> country;
 
-    //TODO: when adding a customer, text fields are used to collect: customerName, address, postalCode, and phone
-    //TODO: customerIds are auto-generated
-    //TODO: first-level-division/country data are collected using separate combo-boxes
+    @FXML
+    private ComboBox<Division> division;
 
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -39,8 +38,7 @@ public class AddCustomer implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         country.setItems(accessCountries.getAllCountries());
+        division.setItems(accessDivisions.getAllDivisions());
     }
 }

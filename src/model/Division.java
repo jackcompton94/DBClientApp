@@ -3,30 +3,32 @@ package model;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Country {
+public class Division {
 
-    private int countryId;
-    private String country;
+    private int divisionId;
+    private String division;
     private Date createDate;
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
+    private int countryId;
 
-    public Country(int countryId, String country, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy) {
-        this.countryId = countryId;
-        this.country = country;
+    public Division(int divisionId, String division, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int countryId) {
+        this.divisionId = divisionId;
+        this.division = division;
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
+        this.countryId = countryId;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public int getDivisionId() {
+        return divisionId;
     }
 
-    public String getCountry() {
-        return country;
+    public String getDivision() {
+        return division;
     }
 
     public Date getCreateDate() {
@@ -45,8 +47,12 @@ public class Country {
         return lastUpdatedBy;
     }
 
+    public int getCountryId() {
+        return countryId;
+    }
+
     @Override
     public String toString(){   // overrides default Object Class behavior when added to a ComboBox
-        return (getCountry());
+        return (getDivision());
     }
- }
+}
