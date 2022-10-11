@@ -7,10 +7,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class accessCustomers {
+public abstract class accessCustomers {
 
     public static ObservableList<Customer> getAllCustomers() {
-
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
         try{
             String sql = "SELECT * FROM customers";                         // query to pull all records from customers
@@ -35,5 +34,17 @@ public class accessCustomers {
             throwables.printStackTrace();
         }
         return customerList;
+    }
+
+    public static int insert(String customerName, String address, String postalCode, String phone, int divisionId) throws SQLException {
+        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?,?,?,?,?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, customerName);
+        ps.setString(2, address);
+        ps.setString(3, postalCode);
+        ps.setString(4, phone);
+        ps.setInt(5,divisionId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
     }
 }

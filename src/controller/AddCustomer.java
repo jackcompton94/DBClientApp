@@ -2,6 +2,7 @@ package controller;
 
 import com.mysql.cj.protocol.WatchableStream;
 import databaseAccess.accessCountries;
+import databaseAccess.accessCustomers;
 import databaseAccess.accessDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +60,7 @@ public class AddCustomer implements Initializable {
          = selectedCountry.getCountry();
          = selectedDivision.getDivision();
          */
+
     }
 
     @Override
