@@ -51,21 +51,19 @@ public class EditCustomer implements Initializable {
         postalCode.setText(String.valueOf(customer.getPostalCode()));
         phone.setText(String.valueOf(customer.getPhone()));
 
-        // take divisionID from customer and match to the division.divisionName
-        // assign matched name to division.setValue()
-        // take countryID from matched division.divisionName object
-        // assign matched name to country.setValue()
-
-        int customerDivisionId = customer.getDivisionId();
+        int customerDivisionId = customer.getDivisionId();              // capture selected customer divisionID
         for (Division d : accessDivisions.getAllDivisions()) {
-            if (customerDivisionId == d.getDivisionId()) {
-                String customerDivision = d.getDivision();
-                division.setValue(customerDivision);
+            if (customerDivisionId == d.getDivisionId()) {              // looping through Division Objects to find a matching ID
+                String customerDivision = d.getDivision();              // set Division Name to customerDivision once match is found
+                division.setValue(customerDivision);                    // sets division ComboBox with the matched name value
+                for (Country c : accessCountries.getAllCountries()) {
+                    if (d.getCountryId() == c.getCountryId()) {         // nested loop used to continue search for Country name from the FK reference to the countries table
+                        String customerCountry = c.getCountry();        // sets matched country name to customerCountry
+                        country.setValue(customerCountry);              // sets country ComboBox with the matched name value
+                    }
+                }
             }
         }
-
-
-
     }
 
     public void cancel(ActionEvent actionEvent) throws IOException {
