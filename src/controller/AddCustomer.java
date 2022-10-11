@@ -12,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Country;
 import model.Division;
@@ -44,6 +42,9 @@ public class AddCustomer implements Initializable {
     @FXML
     private ComboBox<Division> division;
 
+    @FXML
+    private Label successLabel;
+
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
@@ -52,21 +53,32 @@ public class AddCustomer implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws SQLException {
-         String customerNameText = customerName.getText();
-         String addressText = address.getText();
-         String postalCodeText = postalCode.getText();
-         String phoneText = phone.getText();
-         Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
-         Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
 
-        accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, divisionIdText);
+        try {
+            String customerNameText = customerName.getText();
+            String addressText = address.getText();
+            String postalCodeText = postalCode.getText();
+            String phoneText = phone.getText();
+            Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
+            Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
 
-        //TODO: add label to AddCustomer.fxml that flashes a successfully added customer
-        //TODO: add exception handling
+            accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, divisionIdText);
+            successLabel.setVisible(true);
+
+        } catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Format Error");
+            alert.setContentText("Please select a division.");
+            alert.showAndWait();
+        }
+
+
     }
 
     public void selectCountry(ActionEvent actionEvent) {
+        successLabel.setVisible(false);                                                     // hides successLabel on click, resets the label for confirmation of additional saves in one session
         division.setDisable(false);                                                         // enables division selection after country is selected
+
         division.setItems(accessDivisions.getAllDivisions());                               // enables all divisions to be selected
 
         Country selectedCountry = country.getSelectionModel().getSelectedItem();            // captures the selected country object
@@ -89,6 +101,7 @@ public class AddCustomer implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
         division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
+        successLabel.setVisible(false);                         // hides successLabel notification
     }
 
 

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -39,9 +38,9 @@
                </font>
             </Label>
             <Label fx:id="invalidLogin" layoutX="94.0" layoutY="51.0" text="Invalid Username and/or Password" textFill="RED">
-               <effect>
-                  <Blend mode="RED" />
-               </effect></Label>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
       <Label fx:id="zoneId" layoutX="347.0" layoutY="323.0" text="Zone ID" textFill="#233142">
