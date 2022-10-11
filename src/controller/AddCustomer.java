@@ -4,6 +4,8 @@ import com.mysql.cj.protocol.WatchableStream;
 import databaseAccess.accessCountries;
 import databaseAccess.accessCustomers;
 import databaseAccess.accessDivisions;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,27 +65,30 @@ public class AddCustomer implements Initializable {
     }
 
     public void selectCountry(ActionEvent actionEvent) {
-        division.setDisable(false);
+        division.setDisable(false);                                                         // enables division selection after country is selected
+        division.setItems(accessDivisions.getAllDivisions());                               // enables all divisions to be selected
 
-        Country selectedCountry = country.getSelectionModel().getSelectedItem();
-        int countryId = selectedCountry.getCountryId();
+        Country selectedCountry = country.getSelectionModel().getSelectedItem();            // captures the selected country object
+        int countryId = selectedCountry.getCountryId();                                     // captures the selected country ID for matching purposes
+        ObservableList<Division> divisionsInCountry = FXCollections.observableArrayList();  // initializes the temporary available divisions per country selection
+        divisionsInCountry.clear();
 
-        for (Division d : division.getItems()) {
+        for (Division d : division.getItems()) {                                            // loops through all divisions to match selectedCountryId with the d.CountryId and add those matches to our observableList ComboBox
             if (countryId == d.getCountryId()) {
-                division.setValue(d);
-                //TODO: enable division ONLY where the condition above is met
+                divisionsInCountry.add(d);
             }
+            division.setItems(divisionsInCountry);
         }
     }
+
 
     public void selectDivision(ActionEvent actionEvent) {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        country.setItems(accessCountries.getAllCountries());
-        division.setItems(accessDivisions.getAllDivisions());
-        division.setDisable(true); // initializes division ComboBox as disabled to force user to select a Country first
+        country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
+        division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
     }
 
 
