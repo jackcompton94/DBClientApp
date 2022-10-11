@@ -2,6 +2,7 @@ package controller;
 
 import databaseAccess.accessCountries;
 import databaseAccess.accessDivisions;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Country;
@@ -22,6 +24,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EditCustomer implements Initializable {
+
+    @FXML
+    public Label successLabel;
 
     @FXML
     private TextField customerId;
@@ -39,10 +44,10 @@ public class EditCustomer implements Initializable {
     private TextField phone;
 
     @FXML
-    private ComboBox country;
+    private ComboBox<Country> country;
 
     @FXML
-    private ComboBox division;
+    private ComboBox<Division> division;
 
     public void sendCustomer(Customer customer) {
         customerId.setText(String.valueOf(Integer.valueOf(customer.getCustomerId())));
@@ -54,12 +59,10 @@ public class EditCustomer implements Initializable {
         int customerDivisionId = customer.getDivisionId();              // capture selected customer divisionID
         for (Division d : accessDivisions.getAllDivisions()) {
             if (customerDivisionId == d.getDivisionId()) {              // looping through Division Objects to find a matching ID
-                String customerDivision = d.getDivision();              // set Division Name to customerDivision once match is found
-                division.setValue(customerDivision);                    // sets division ComboBox with the matched name value
+                division.setValue(d);                                   // sets division ComboBox with the matched name value
                 for (Country c : accessCountries.getAllCountries()) {
                     if (d.getCountryId() == c.getCountryId()) {         // nested loop used to continue search for Country name from the FK reference to the countries table
-                        String customerCountry = c.getCountry();        // sets matched country name to customerCountry
-                        country.setValue(customerCountry);              // sets country ComboBox with the matched name value
+                        country.setValue(c);                            // sets country ComboBox with the matched name value
                     }
                 }
             }
@@ -74,17 +77,32 @@ public class EditCustomer implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) {
-    }
-
-    public void selectDivision(ActionEvent actionEvent) {
+        //TODO: watch JDBC webinar on Updating databases
     }
 
     public void selectCountry(ActionEvent actionEvent) {
+        division.setDisable(false);                                                         // enables division selection after country is selected
+        division.setValue(null);                                                            // logic control forcing users to reselect division
+
+        division.setItems(accessDivisions.getAllDivisions());                               // enables all divisions to be selected
+
+        Country selectedCountry = country.getValue();                                       // captures the selected country object
+        int countryId = selectedCountry.getCountryId();                                     // captures the selected country ID for matching purposes
+        ObservableList<Division> divisionsInCountry = FXCollections.observableArrayList();  // initializes the temporary available divisions per country selection
+        divisionsInCountry.clear();
+
+        for (Division d : division.getItems()) {                                            // loops through all divisions to match selectedCountryId with the d.CountryId and add those matches to our observableList ComboBox
+            if (countryId == d.getCountryId()) {
+                divisionsInCountry.add(d);
+            }
+            division.setItems(divisionsInCountry);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        country.setItems(accessCountries.getAllCountries());
-        division.setItems(accessDivisions.getAllDivisions());
+        country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
+        division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
+        successLabel.setVisible(false);                         // hides successLabel notification
     }
 }

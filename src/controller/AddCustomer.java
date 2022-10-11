@@ -94,9 +94,6 @@ public class AddCustomer implements Initializable {
         }
     }
 
-    public void selectDivision(ActionEvent actionEvent) {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
