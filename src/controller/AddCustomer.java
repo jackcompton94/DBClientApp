@@ -34,6 +34,8 @@ public class AddCustomer implements Initializable {
     }
 
     public void save(ActionEvent actionEvent){
+        Country selectedCountry = country.getSelectionModel().getSelectedItem();
+
     }
 
     @Override
