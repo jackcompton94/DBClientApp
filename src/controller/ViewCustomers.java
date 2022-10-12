@@ -101,7 +101,7 @@ public class ViewCustomers implements Initializable {
             alert.showAndWait();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this Customer? \nThis will delete ALL Appointments with this Customer.");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this Customer? \nThis will delete ALL Appointments for this Customer.");
             Optional<ButtonType> result = alert.showAndWait();
 
             int customerToDelete = selection.getCustomerId();

@@ -19,12 +19,10 @@ import model.Division;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditCustomer implements Initializable {
-
-    @FXML
-    public Label successLabel;
 
     @FXML
     private TextField customerId;
@@ -85,11 +83,17 @@ public class EditCustomer implements Initializable {
             Integer customerIdText = Integer.valueOf(customerId.getText());
 
             accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, divisionIdText, customerIdText);
-            successLabel.setVisible(true);
 
-            //TODO: add an automatic screen change back to view customer after the edit saves
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated customer!");
+            Optional<ButtonType> result = alert.showAndWait();
 
-        } catch (NullPointerException | SQLException e){
+            // after update - takes user back to ViewCustomers
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+        } catch (NullPointerException | SQLException | IOException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Format Error");
             alert.setContentText("Please select a division.");
@@ -120,6 +124,5 @@ public class EditCustomer implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
         division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
-        successLabel.setVisible(false);                         // hides successLabel notification
     }
 }
