@@ -49,6 +49,9 @@ public class AddAppointments implements Initializable {
     @FXML
     public ComboBox userId;
 
+    SpinnerValueFactory<Integer> hourSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24,1);
+    SpinnerValueFactory<Integer> minuteSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,55,15);
+
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
@@ -62,5 +65,7 @@ public class AddAppointments implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successLabel.setVisible(false);
+        start.setValueFactory(hourSpinner);
+        end.setValueFactory(minuteSpinner);
     }
 }

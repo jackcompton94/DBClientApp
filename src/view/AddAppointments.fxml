@@ -106,8 +106,8 @@
             <DatePicker fx:id="date" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Spinner fx:id="start" layoutX="108.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
-      <Spinner fx:id="end" layoutX="256.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="start" editable="true" layoutX="108.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="end" editable="true" layoutX="256.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
       <ComboBox fx:id="contact" layoutX="360.0" layoutY="115.0" prefHeight="25.0" prefWidth="124.0" promptText="Contact" />
       <ComboBox fx:id="customerId" layoutX="360.0" layoutY="158.0" prefHeight="25.0" prefWidth="124.0" promptText="Customer" />
       <ComboBox fx:id="userId" layoutX="360.0" layoutY="198.0" prefHeight="25.0" prefWidth="124.0" promptText="User" />
