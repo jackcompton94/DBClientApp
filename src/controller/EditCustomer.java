@@ -87,6 +87,8 @@ public class EditCustomer implements Initializable {
             accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, divisionIdText, customerIdText);
             successLabel.setVisible(true);
 
+            //TODO: add an automatic screen change back to view customer after the edit saves
+
         } catch (NullPointerException | SQLException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Format Error");

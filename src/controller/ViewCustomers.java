@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
@@ -19,6 +16,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ViewCustomers implements Initializable {
@@ -97,18 +95,23 @@ public class ViewCustomers implements Initializable {
 
     public void deleteCustomer(ActionEvent actionEvent) throws SQLException {
         Customer selection = customerTableView.getSelectionModel().getSelectedItem();
-        int customerToDelete = selection.getCustomerId();
 
-        try {
-            accessCustomers.delete(customerToDelete);
-        }
-        catch (NullPointerException e) {
+        if (selection == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a Customer to delete!");
             alert.showAndWait();
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this Customer? \nThis will delete ALL Appointments with this Customer.");
+            Optional<ButtonType> result = alert.showAndWait();
 
+            int customerToDelete = selection.getCustomerId();
+
+            if (result.get() == ButtonType.OK) {
+                accessCustomers.delete(customerToDelete);
+                customerTableView.setItems(accessCustomers.getAllCustomers()); // refreshes after delete to remove the customer view from TableView
+            }
+        }
         //TODO: when deleting a customer record, all of the customer's appointments must be deleted first, due to foreign key constraints
-        //TODO: a custom message must display to confirm the deletion
     }
 
     @Override
