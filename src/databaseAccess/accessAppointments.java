@@ -40,7 +40,23 @@ public abstract class accessAppointments {
         }
         return appointmentList;
     }
-    // TODO: Insert
+
+    public static int insert(String title, String description, String location, String type, Date start, Date end, int customerId, int userId, int contactId) throws SQLException {
+        String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID. Contact_ID) VALUES (?,?,?,?,?,?,?,?,?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, title);
+        ps.setString(2, description);
+        ps.setString(3, location);
+        ps.setString(4, type);
+        ps.setDate(5,start);
+        ps.setDate(6,end);
+        ps.setInt(7,customerId);
+        ps.setInt(8,userId);
+        ps.setInt(9, contactId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
     // TODO: Update
     // TODO: Delete
 }

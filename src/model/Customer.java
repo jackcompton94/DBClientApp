@@ -68,4 +68,9 @@ public class Customer {
     public int getDivisionId() {
         return divisionId;
     }
+
+    @Override
+    public String toString(){   // overrides default Object Class behavior when added to a ComboBox
+        return ("ID [" + getCustomerId() + "] " + getCustomerName());
+    }
 }
