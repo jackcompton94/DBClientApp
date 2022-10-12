@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -106,8 +106,8 @@
             <DatePicker fx:id="date" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <ChoiceBox fx:id="start" layoutX="106.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
-      <ChoiceBox fx:id="end" layoutX="249.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="start" layoutX="108.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="end" layoutX="256.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
       <ComboBox fx:id="contact" layoutX="360.0" layoutY="115.0" prefHeight="25.0" prefWidth="124.0" promptText="Contact" />
       <ComboBox fx:id="customerId" layoutX="360.0" layoutY="158.0" prefHeight="25.0" prefWidth="124.0" promptText="Customer" />
       <ComboBox fx:id="userId" layoutX="360.0" layoutY="198.0" prefHeight="25.0" prefWidth="124.0" promptText="User" />

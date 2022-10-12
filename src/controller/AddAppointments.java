@@ -35,10 +35,10 @@ public class AddAppointments implements Initializable {
     public DatePicker date;
 
     @FXML
-    public ChoiceBox start;
+    public Spinner<Integer> start;
 
     @FXML
-    public ChoiceBox end;
+    public Spinner<Integer> end;
 
     @FXML
     public ComboBox contact;
@@ -63,5 +63,4 @@ public class AddAppointments implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successLabel.setVisible(false);
     }
-
 }
