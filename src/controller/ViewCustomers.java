@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.Customer;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -94,7 +95,18 @@ public class ViewCustomers implements Initializable {
         }
     }
 
-    public void deleteCustomer(ActionEvent actionEvent) {
+    public void deleteCustomer(ActionEvent actionEvent) throws SQLException {
+        Customer selection = customerTableView.getSelectionModel().getSelectedItem();
+        int customerToDelete = selection.getCustomerId();
+
+        try {
+            accessCustomers.delete(customerToDelete);
+        }
+        catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a Customer to delete!");
+            alert.showAndWait();
+        }
+
         //TODO: when deleting a customer record, all of the customer's appointments must be deleted first, due to foreign key constraints
         //TODO: a custom message must display to confirm the deletion
     }

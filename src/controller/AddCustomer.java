@@ -20,7 +20,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-
 public class AddCustomer implements Initializable {
 
     @FXML
@@ -70,8 +69,6 @@ public class AddCustomer implements Initializable {
             alert.setContentText("Please select a division.");
             alert.showAndWait();
         }
-
-
     }
 
     public void selectCountry(ActionEvent actionEvent) {
@@ -99,6 +96,4 @@ public class AddCustomer implements Initializable {
         division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
         successLabel.setVisible(false);                         // hides successLabel notification
     }
-
-
 }

@@ -59,5 +59,12 @@ public abstract class accessCustomers {
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
-    // TODO: DELETE
+
+    public static int delete(int customerId) throws SQLException {
+        String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, customerId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
 }
