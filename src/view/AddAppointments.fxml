@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="340.0" prefWidth="500.0" style="-fx-background-color: #f3fbff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointments">
+<AnchorPane prefHeight="360.0" prefWidth="500.0" style="-fx-background-color: #f3fbff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointments">
    <children>
-      <Label layoutX="191.0" layoutY="261.0" text="End Time">
+      <Label layoutX="263.0" layoutY="271.0" text="End Time">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="39.0" layoutY="261.0" text="Start Time">
+      <Label layoutX="40.0" layoutY="271.0" text="Start Time">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="successLabel" layoutX="97.0" layoutY="304.0" text="Successfully added Appointment!" textFill="MEDIUMSEAGREEN">
+      <Label fx:id="successLabel" layoutX="95.0" layoutY="324.0" text="Successfully added Appointment!" textFill="MEDIUMSEAGREEN">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -106,20 +106,24 @@
             <DatePicker fx:id="date" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Spinner fx:id="start" editable="true" layoutX="108.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
-      <Spinner fx:id="end" editable="true" layoutX="256.0" layoutY="256.0" prefHeight="25.0" prefWidth="61.0" />
-      <ComboBox fx:id="contact" layoutX="360.0" layoutY="115.0" prefHeight="25.0" prefWidth="124.0" promptText="Contact" />
-      <ComboBox fx:id="customerId" layoutX="360.0" layoutY="158.0" prefHeight="25.0" prefWidth="124.0" promptText="Customer" />
-      <ComboBox fx:id="userId" layoutX="360.0" layoutY="198.0" prefHeight="25.0" prefWidth="124.0" promptText="User" />
-      <Button layoutX="435.0" layoutY="299.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #3CB371; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="Save" textFill="GHOSTWHITE">
+      <Spinner fx:id="startHour" editable="true" layoutX="112.0" layoutY="266.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="startMinute" editable="true" layoutX="189.0" layoutY="266.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="endHour" editable="true" layoutX="316.0" layoutY="266.0" prefHeight="25.0" prefWidth="61.0" />
+      <Spinner fx:id="endMinute" editable="true" layoutX="390.0" layoutY="266.0" prefHeight="25.0" prefWidth="61.0" />
+      <ComboBox fx:id="contact" layoutX="358.0" layoutY="78.0" prefHeight="25.0" prefWidth="124.0" promptText="Contact" />
+      <ComboBox fx:id="customerId" layoutX="358.0" layoutY="121.0" prefHeight="25.0" prefWidth="124.0" promptText="Customer" />
+      <ComboBox fx:id="userId" layoutX="358.0" layoutY="161.0" prefHeight="25.0" prefWidth="124.0" promptText="User" />
+      <Button layoutX="433.0" layoutY="319.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #3CB371; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="Save" textFill="GHOSTWHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="338.0" layoutY="299.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #FF6347; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="Cancel" textFill="GHOSTWHITE">
+      <Button layoutX="336.0" layoutY="319.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #FF6347; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="Cancel" textFill="GHOSTWHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Button>
+      <Label layoutX="179.0" layoutY="270.0" text=":" />
+      <Label layoutX="383.0" layoutY="270.0" text=":" />
    </children>
 </AnchorPane>

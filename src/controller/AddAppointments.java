@@ -35,10 +35,16 @@ public class AddAppointments implements Initializable {
     public DatePicker date;
 
     @FXML
-    public Spinner<Integer> start;
+    public Spinner<Integer> startMinute;
 
     @FXML
-    public Spinner<Integer> end;
+    public Spinner<Integer> startHour;
+
+    @FXML
+    public Spinner<Integer> endMinute;
+
+    @FXML
+    public Spinner<Integer> endHour;
 
     @FXML
     public ComboBox contact;
@@ -49,8 +55,10 @@ public class AddAppointments implements Initializable {
     @FXML
     public ComboBox userId;
 
-    SpinnerValueFactory<Integer> hourSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24,1);
-    SpinnerValueFactory<Integer> minuteSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,55,15);
+    SpinnerValueFactory<Integer> startHourSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+    SpinnerValueFactory<Integer> startMinuteSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59);
+    SpinnerValueFactory<Integer> endHourSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,24);
+    SpinnerValueFactory<Integer> endMinuteSpinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59);
 
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -65,7 +73,10 @@ public class AddAppointments implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successLabel.setVisible(false);
-        start.setValueFactory(hourSpinner);
-        end.setValueFactory(minuteSpinner);
+
+        startHour.setValueFactory(startHourSpinner);
+        startMinute.setValueFactory(startMinuteSpinner);
+        endHour.setValueFactory(endHourSpinner);
+        endMinute.setValueFactory(endMinuteSpinner);
     }
 }
