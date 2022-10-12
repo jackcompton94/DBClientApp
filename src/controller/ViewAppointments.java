@@ -72,7 +72,11 @@ public class ViewAppointments implements Initializable {
         stage.show();
     }
 
-    public void addAppointment(ActionEvent actionEvent) {
+    public void addAppointment(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/AddAppointments.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void editAppointment(ActionEvent actionEvent) {

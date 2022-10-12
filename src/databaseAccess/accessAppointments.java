@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import model.Appointment;
 import java.sql.*;
 
-public class accessAppointments {
+public abstract class accessAppointments {
 
     public static ObservableList<Appointment> getAllAppointments() {
 
