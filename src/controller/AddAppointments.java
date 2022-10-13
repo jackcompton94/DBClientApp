@@ -1,6 +1,5 @@
 package controller;
 
-import databaseAccess.accessAppointments;
 import databaseAccess.accessContacts;
 import databaseAccess.accessCustomers;
 import databaseAccess.accessUsers;
@@ -20,11 +19,10 @@ import model.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.text.DateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -49,16 +47,16 @@ public class AddAppointments implements Initializable {
     public DatePicker date;
 
     @FXML
-    public ComboBox startHour;
+    public ComboBox<String> startHour;
 
     @FXML
-    public ComboBox startMinute;
+    public ComboBox<String> startMinute;
 
     @FXML
-    public ComboBox endHour;
+    public ComboBox<String> endHour;
 
     @FXML
-    public ComboBox endMinute;
+    public ComboBox<String> endMinute;
 
     @FXML
     public ComboBox<Contact> contact;
@@ -69,32 +67,28 @@ public class AddAppointments implements Initializable {
     @FXML
     public ComboBox<User> user;
 
-    // start & end ComboBox setup
-    ObservableList<String> hourSelections = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24");
-    ObservableList<String> minuteSelections = FXCollections.observableArrayList("00","15","30","45");
+    // startHour/Minute & endHour/Minute ComboBox setup
 
-    public void cancel(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
 
     public void save(ActionEvent actionEvent) throws SQLException {
-
-        // try
         String titleText = title.getText();
         String descriptionText = description.getText();
         String locationText = location.getText();
         String typeText = type.getText();
 
-        // TODO: Date, Start, End
-        String dateSelection = date.getEditor().getText();
-        String startTime = startHour.getSelectionModel().toString() + ":" + startMinute.getSelectionModel().toString();
-        String endTime = endHour.getSelectionModel().toString() + ":" + endMinute.getSelectionModel().toString();
+        //TODO: Date
+        LocalDate dateSelection = date.getValue();
 
-        String startDateTime = dateSelection + " " + startTime;
-        String endDateTime = dateSelection + " " + endTime;
+        //TODO: Start
+        String sH = startHour.getValue();
+        String sM = startMinute.getValue();
+
+        //TODO: End
+        String endHourValue = endHour.getValue();
+        String endMinuteValue = endMinute.getValue();
+
+        //TODO: dateTimeSelection test
+
 
         // ContactID, CustomerID, UserID
         Contact selectedContact = contact.getValue();
@@ -110,6 +104,13 @@ public class AddAppointments implements Initializable {
         successLabel.setVisible(true);
     }
 
+    public void cancel(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successLabel.setVisible(false);
@@ -119,11 +120,7 @@ public class AddAppointments implements Initializable {
         customer.setItems(accessCustomers.getAllCustomers());
         user.setItems(accessUsers.getAllUsers());
 
-        //initializes Time
-        startHour.setItems(hourSelections);
-        endHour.setItems(hourSelections);
-        startMinute.setItems(minuteSelections);
-        endMinute.setItems(minuteSelections);
 
+        //TODO: initialize Combo Boxes
     }
 }
