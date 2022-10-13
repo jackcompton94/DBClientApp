@@ -50,13 +50,13 @@ public class AddAppointments implements Initializable {
     public ComboBox<Integer> startHour;
 
     @FXML
-    public ComboBox<Integer> startMinute;
+    public ComboBox<String> startMinute;
 
     @FXML
     public ComboBox<Integer> endHour;
 
     @FXML
-    public ComboBox<Integer> endMinute;
+    public ComboBox<String> endMinute;
 
     @FXML
     public ComboBox<Contact> contact;
@@ -89,12 +89,10 @@ public class AddAppointments implements Initializable {
         LocalDate dateSelection = date.getValue();
 
         //TODO: Start + Date
-        LocalTime startTime = LocalTime.of(Integer.valueOf(startHour.getValue()), Integer.valueOf(startMinute.getValue()));
-        System.out.println(startTime);
+        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()));
 
         //TODO: End + Date
-
-
+        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()));
 
         // ContactID, CustomerID, UserID
         Contact selectedContact = contact.getValue();
@@ -128,6 +126,5 @@ public class AddAppointments implements Initializable {
 
         // initializes Combo Boxes
         initTime();
-
     }
 }
