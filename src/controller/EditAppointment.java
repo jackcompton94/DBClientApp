@@ -1,5 +1,6 @@
 package controller;
 
+import databaseAccess.accessAppointments;
 import databaseAccess.accessContacts;
 import databaseAccess.accessCustomers;
 import databaseAccess.accessUsers;
@@ -7,11 +8,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.converter.LocalDateTimeStringConverter;
 import model.Appointment;
 import model.Contact;
@@ -19,10 +21,14 @@ import model.Customer;
 import model.User;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditAppointment implements Initializable {
@@ -87,11 +93,34 @@ public class EditAppointment implements Initializable {
         type.setText(appointment.getType());
 
         //date
+        LocalDate d = appointment.getStart().toLocalDate();
+        date.setValue(d);
 
-        //startHour
-        //startMinute
+        //startHour / startMinute
+        LocalTime start = appointment.getStart().toLocalTime();
+        int sHour = start.getHour();
+        startHour.setValue(sHour);
+        String sMinute = String.valueOf(start.getMinute());
+        startMinute.setValue(sMinute);
+        if (sMinute.contentEquals("0")) {                   // used to format Time correctly with '00' instead of '0'
+            startMinute.setValue("00");
+        }
+        else {
+            startMinute.setValue(sMinute);
+        }
+
         //endHour
         //endMinute
+        LocalTime end = appointment.getEnd().toLocalTime();
+        int eHour = end.getHour();
+        endHour.setValue(eHour);
+        String eMinute = String.valueOf(end.getMinute());
+        if (eMinute.contentEquals("0")) {                   // used to format Time correctly with '00' instead of '0'
+            endMinute.setValue("00");
+        }
+        else {
+            endMinute.setValue(eMinute);
+        }
 
         //contactID
         int contactId = appointment.getContactId();
@@ -119,10 +148,54 @@ public class EditAppointment implements Initializable {
 
     }
 
-    public void save(ActionEvent actionEvent) {
+    public void save(ActionEvent actionEvent) throws IOException, SQLException {
+        int appointmentIdText = Integer.parseInt(appointmentId.getText());
+        String titleText = title.getText();
+        String descriptionText = description.getText();
+        String locationText = location.getText();
+        String typeText = type.getText();
+
+        // Date
+        LocalDate dateSelection = date.getValue();
+
+        // Start + Date
+        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()), 00);
+        LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
+
+        // End + Date
+        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()), 00);
+        LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
+
+        LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdatedBy = "get current user";
+
+        // ContactID, CustomerID, UserID
+        Contact selectedContact = contact.getValue();
+        int contactId = selectedContact.getContactId();
+
+        Customer selectedCustomer = customer.getValue();
+        int customerId = selectedCustomer.getCustomerId();
+
+        User selectedUser = user.getValue();
+        int userId = selectedUser.getUserId();
+
+        accessAppointments.update(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, lastUpdate, lastUpdatedBy, customerId, userId, contactId, appointmentIdText);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated appointment!");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // after update - takes user back to ViewAppointments
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
-    public void cancel(ActionEvent actionEvent) {
+    public void cancel(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @Override

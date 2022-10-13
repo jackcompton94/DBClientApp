@@ -1,5 +1,6 @@
 package controller;
 
+import databaseAccess.accessAppointments;
 import databaseAccess.accessCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Customer;
 import java.io.IOException;
 import java.net.URL;
@@ -107,11 +109,21 @@ public class ViewCustomers implements Initializable {
             int customerToDelete = selection.getCustomerId();
 
             if (result.get() == ButtonType.OK) {
+
+                // loop to parse all apartments and delete all appointments associated with the customerID selected
+                for (Appointment a : accessAppointments.getAllAppointments()) {
+                    if (customerToDelete == a.getCustomerId()) {
+                        accessAppointments.delete(a.getAppointmentId());
+                    }
+                }
                 accessCustomers.delete(customerToDelete);
                 customerTableView.setItems(accessCustomers.getAllCustomers()); // refreshes after delete to remove the customer view from TableView
+
+                // confirms the delete
+                Alert verifyDelete = new Alert(Alert.AlertType.INFORMATION, "You have deleted Customer ID: " + selection.getCustomerId() + " Name: " + selection.getCustomerName());
+                verifyDelete.showAndWait();
             }
         }
-        //TODO: when deleting a customer record, all of the customer's appointments must be deleted first, due to foreign key constraints
     }
 
     @Override

@@ -1,16 +1,14 @@
 package controller;
 
 import databaseAccess.accessAppointments;
+import databaseAccess.accessCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
@@ -18,8 +16,10 @@ import model.Customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ViewAppointments implements Initializable {
@@ -105,7 +105,28 @@ public class ViewAppointments implements Initializable {
         }
     }
 
-    public void deleteAppointment(ActionEvent actionEvent) {
+    public void deleteAppointment(ActionEvent actionEvent) throws SQLException {
+        Appointment selection = appointmentTableView.getSelectionModel().getSelectedItem();
+
+        if (selection == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select an Appointment to delete!");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this Appointment?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            int appointmentToDelete = selection.getAppointmentId();
+
+            if (result.get() == ButtonType.OK) {
+                accessAppointments.delete(appointmentToDelete);
+                appointmentTableView.setItems(accessAppointments.getAllAppointments()); // refreshes after delete to remove the appointment view from TableView
+
+                // confirms the delete ID
+                Alert verifyDelete = new Alert(Alert.AlertType.INFORMATION, "You have deleted Appointment ID: " + selection.getAppointmentId() + " Type: " + selection.getType());
+                verifyDelete.showAndWait();
+            }
+        }
     }
 
     @Override

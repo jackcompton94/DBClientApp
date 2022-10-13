@@ -24,11 +24,11 @@ public abstract class accessAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                Timestamp start = rs.getTimestamp("Start");
-                Timestamp end = rs.getTimestamp("End");
-                Timestamp createDate = rs.getTimestamp("Create_Date");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
                 String createdBy = rs.getString("Created_By");
-                Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+                LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
@@ -62,6 +62,30 @@ public abstract class accessAppointments {
         return rowsAffected;
     }
 
-    // TODO: Update
-    // TODO: Delete
+    public static int update(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId, int appointmentId) throws SQLException {
+        String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, title);
+        ps.setString(2, description);
+        ps.setString(3, location);
+        ps.setString(4, type);
+        ps.setTimestamp(5, Timestamp.valueOf(start));
+        ps.setTimestamp(6, Timestamp.valueOf(end));
+        ps.setTimestamp(7,Timestamp.valueOf(lastUpdate));
+        ps.setString(8,lastUpdatedBy);
+        ps.setInt(9,customerId);
+        ps.setInt(10,userId);
+        ps.setInt(11, contactId);
+        ps.setInt(12,appointmentId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
+    public static int delete(int appointmentId) throws SQLException {
+        String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,appointmentId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
 }
