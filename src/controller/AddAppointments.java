@@ -1,5 +1,6 @@
 package controller;
 
+import databaseAccess.accessAppointments;
 import databaseAccess.accessContacts;
 import databaseAccess.accessCustomers;
 import databaseAccess.accessUsers;
@@ -86,13 +87,17 @@ public class AddAppointments implements Initializable {
         String descriptionText = description.getText();
         String locationText = location.getText();
         String typeText = type.getText();
+
+        // Date
         LocalDate dateSelection = date.getValue();
 
-        //TODO: Start + Date
-        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()));
+        // Start + Date
+        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()), 00);
+        LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
 
-        //TODO: End + Date
-        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()));
+        // End + Date
+        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()), 00);
+        LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
 
         // ContactID, CustomerID, UserID
         Contact selectedContact = contact.getValue();
@@ -104,7 +109,7 @@ public class AddAppointments implements Initializable {
         User selectedUser = user.getValue();
         int userId = selectedUser.getUserId();
 
-        // accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, customerId, userId, contactId);
+        accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, customerId, userId, contactId);
         successLabel.setVisible(true);
     }
 
