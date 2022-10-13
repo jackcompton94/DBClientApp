@@ -7,12 +7,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
+import model.Customer;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -79,7 +82,27 @@ public class ViewAppointments implements Initializable {
         stage.show();
     }
 
-    public void editAppointment(ActionEvent actionEvent) {
+    public void editAppointment(ActionEvent actionEvent) throws IOException {
+        Appointment selection = appointmentTableView.getSelectionModel().getSelectedItem();
+
+        if (selection == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select an Appointment to edit!");
+            alert.showAndWait();
+        }
+        else {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/EditAppointment.fxml"));
+            loader.load();
+
+            // sends Appointment object to EditAppointment
+            EditAppointment EditAppointmentController = loader.getController();
+            EditAppointmentController.sendAppointment(appointmentTableView.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
     }
 
     public void deleteAppointment(ActionEvent actionEvent) {
