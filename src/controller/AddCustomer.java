@@ -68,9 +68,16 @@ public class AddCustomer implements Initializable {
             Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
             Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
 
-            accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionIdText);
-            successLabel.setVisible(true);
-
+            if (customerNameText.isBlank() || addressText.isBlank()|| postalCodeText.isBlank()|| phoneText.isBlank()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save customer. Please enter missing information.");
+                alert.showAndWait();
+            }
+            else {
+                accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionIdText);
+                successLabel.setVisible(true);
+            }
         } catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Format Error");

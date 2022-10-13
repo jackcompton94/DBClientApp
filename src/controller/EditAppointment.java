@@ -149,47 +149,88 @@ public class EditAppointment implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws IOException, SQLException {
-        int appointmentIdText = Integer.parseInt(appointmentId.getText());
-        String titleText = title.getText();
-        String descriptionText = description.getText();
-        String locationText = location.getText();
-        String typeText = type.getText();
 
-        // Date
-        LocalDate dateSelection = date.getValue();
+        try {
+            int appointmentIdText = Integer.parseInt(appointmentId.getText());
+            String titleText = title.getText();
+            String descriptionText = description.getText();
+            String locationText = location.getText();
+            String typeText = type.getText();
 
-        // Start + Date
-        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()), 00);
-        LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
 
-        // End + Date
-        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()), 00);
-        LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
+            // Date
+            LocalDate dateSelection = date.getValue();
 
-        LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdatedBy = "get current user";
+            // Start + Date
+            LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.parseInt(startMinute.getValue()), 0);
+            LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
 
-        // ContactID, CustomerID, UserID
-        Contact selectedContact = contact.getValue();
-        int contactId = selectedContact.getContactId();
+            // End + Date
+            LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.parseInt(endMinute.getValue()), 0);
+            LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
 
-        Customer selectedCustomer = customer.getValue();
-        int customerId = selectedCustomer.getCustomerId();
+            LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdatedBy = "get current user";
 
-        User selectedUser = user.getValue();
-        int userId = selectedUser.getUserId();
 
-        accessAppointments.update(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, lastUpdate, lastUpdatedBy, customerId, userId, contactId, appointmentIdText);
+            // ContactID, CustomerID, UserID
+            Contact selectedContact = contact.getValue();
+            int contactId = selectedContact.getContactId();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated appointment!");
-        Optional<ButtonType> result = alert.showAndWait();
+            Customer selectedCustomer = customer.getValue();
+            int customerId = selectedCustomer.getCustomerId();
 
-        // after update - takes user back to ViewAppointments
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
+            User selectedUser = user.getValue();
+            int userId = selectedUser.getUserId();
+
+            if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Please enter missing information.");
+                alert.showAndWait();
+            }
+
+            if (startDateTime.isAfter(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Start Time cannot be after End Time.");
+                alert.showAndWait();
+            }
+
+            if (startDateTime.isBefore(LocalDateTime.now())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
+                alert.showAndWait();
+            }
+
+            else if (startDateTime.isEqual(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Start and End Time cannot be the same.");
+                alert.showAndWait();
+            }
+
+            else {
+                accessAppointments.update(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, lastUpdate, lastUpdatedBy, customerId, userId, contactId, appointmentIdText);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated appointment!");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                // after update - takes user back to ViewAppointments
+                Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
+                stage.setScene(new Scene(scene));
+                stage.show();
+            }
+        } catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Please enter missing information.");
+                alert.showAndWait();
+            }
+        }
+
 
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

@@ -83,39 +83,73 @@ public class AddAppointments implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws SQLException {
-        String titleText = title.getText();
-        String descriptionText = description.getText();
-        String locationText = location.getText();
-        String typeText = type.getText();
 
-        // Date
-        LocalDate dateSelection = date.getValue();
+        try {
+            String titleText = title.getText();
+            String descriptionText = description.getText();
+            String locationText = location.getText();
+            String typeText = type.getText();
 
-        // Start + Date
-        LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.valueOf(startMinute.getValue()), 00);
-        LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
+            LocalDate dateSelection = date.getValue();                                                                      // Date
 
-        // End + Date
-        LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()), 00);
-        LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
+            LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.parseInt(startMinute.getValue()), 00);
+            LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);                                       // Start + Date
 
-        LocalDateTime createDate = LocalDateTime.now();
-        String createdBy = "get current user";
-        LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdatedBy = "get current user";
+            LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.parseInt(endMinute.getValue()), 00);
+            LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);                                           // End + Date
 
-        // ContactID, CustomerID, UserID
-        Contact selectedContact = contact.getValue();
-        int contactId = selectedContact.getContactId();
+            LocalDateTime createDate = LocalDateTime.now();
+            String createdBy = "get current user";
+            LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdatedBy = "get current user";
 
-        Customer selectedCustomer = customer.getValue();
-        int customerId = selectedCustomer.getCustomerId();
+            Contact selectedContact = contact.getValue();                                                                   // ContactID, CustomerID, UserID
+            int contactId = selectedContact.getContactId();
 
-        User selectedUser = user.getValue();
-        int userId = selectedUser.getUserId();
+            Customer selectedCustomer = customer.getValue();
+            int customerId = selectedCustomer.getCustomerId();
 
-        accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
-        successLabel.setVisible(true);
+            User selectedUser = user.getValue();
+            int userId = selectedUser.getUserId();
+
+            if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Please enter missing information.");
+                alert.showAndWait();
+            }
+
+            if (startDateTime.isAfter(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Start Time cannot be after End Time.");
+                alert.showAndWait();
+            }
+
+            if (startDateTime.isBefore(LocalDateTime.now())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
+                alert.showAndWait();
+            }
+
+            else if (startDateTime.isEqual(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save appointment. Start and End Time cannot be the same.");
+                alert.showAndWait();
+            }
+
+            else {
+                accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
+                successLabel.setVisible(true);
+            }
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Format Error");
+            alert.setContentText("Unable to save appointment. Please enter missing information.");
+            alert.showAndWait();
+        }
     }
 
     public void cancel(ActionEvent actionEvent) throws IOException {

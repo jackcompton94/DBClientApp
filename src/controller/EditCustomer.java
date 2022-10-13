@@ -86,17 +86,24 @@ public class EditCustomer implements Initializable {
             Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
             Integer customerIdText = Integer.valueOf(customerId.getText());
 
-            accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, lastUpdate, lastUpdatedBy, divisionIdText, customerIdText);
+            if (customerNameText.isBlank() || addressText.isBlank()|| postalCodeText.isBlank()|| phoneText.isBlank()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Format Error");
+                alert.setContentText("Unable to save customer. Please enter missing information.");
+                alert.showAndWait();
+            }
+            else{
+                accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, lastUpdate, lastUpdatedBy, divisionIdText, customerIdText);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated customer!");
-            Optional<ButtonType> result = alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated customer!");
+                Optional<ButtonType> result = alert.showAndWait();
 
-            // after update - takes user back to ViewCustomers
-            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-            Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
-            stage.setScene(new Scene(scene));
-            stage.show();
-
+                // after update - takes user back to ViewCustomers
+                Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
+                stage.setScene(new Scene(scene));
+                stage.show();
+            }
         } catch (NullPointerException | SQLException | IOException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Format Error");
