@@ -30,43 +30,43 @@ import java.util.ResourceBundle;
 public class AddAppointments implements Initializable {
 
     @FXML
-    public Label successLabel;
+    private Label successLabel;
 
     @FXML
-    public TextField title;
+    private TextField title;
 
     @FXML
-    public TextField description;
+    private TextField description;
 
     @FXML
-    public TextField location;
+    private TextField location;
 
     @FXML
-    public TextField type;
+    private TextField type;
 
     @FXML
-    public DatePicker date;
+    private DatePicker date;
 
     @FXML
-    public ComboBox<Integer> startHour;
+    private ComboBox<Integer> startHour;
 
     @FXML
-    public ComboBox<String> startMinute;
+    private ComboBox<String> startMinute;
 
     @FXML
-    public ComboBox<Integer> endHour;
+    private ComboBox<Integer> endHour;
 
     @FXML
-    public ComboBox<String> endMinute;
+    private ComboBox<String> endMinute;
 
     @FXML
-    public ComboBox<Contact> contact;
+    private ComboBox<Contact> contact;
 
     @FXML
-    public ComboBox<Customer> customer;
+    private ComboBox<Customer> customer;
 
     @FXML
-    public ComboBox<User> user;
+    private ComboBox<User> user;
 
 
     public void initTime() {
