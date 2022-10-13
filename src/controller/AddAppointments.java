@@ -47,16 +47,16 @@ public class AddAppointments implements Initializable {
     public DatePicker date;
 
     @FXML
-    public ComboBox<String> startHour;
+    public ComboBox<Integer> startHour;
 
     @FXML
-    public ComboBox<String> startMinute;
+    public ComboBox<Integer> startMinute;
 
     @FXML
-    public ComboBox<String> endHour;
+    public ComboBox<Integer> endHour;
 
     @FXML
-    public ComboBox<String> endMinute;
+    public ComboBox<Integer> endMinute;
 
     @FXML
     public ComboBox<Contact> contact;
@@ -67,27 +67,33 @@ public class AddAppointments implements Initializable {
     @FXML
     public ComboBox<User> user;
 
-    // startHour/Minute & endHour/Minute ComboBox setup
 
+    public void initTime() {
+        ObservableList<Integer> hourTimes = FXCollections.observableArrayList();
+        for (int i = 1; i <= 24; i++) {
+            hourTimes.add(i);
+        }
+        startHour.setItems(hourTimes);
+        endHour.setItems(hourTimes);
+
+        ObservableList<String> minuteTimes = FXCollections.observableArrayList("00", "15", "30", "45");
+        startMinute.setItems(minuteTimes);
+        endMinute.setItems(minuteTimes);
+    }
 
     public void save(ActionEvent actionEvent) throws SQLException {
         String titleText = title.getText();
         String descriptionText = description.getText();
         String locationText = location.getText();
         String typeText = type.getText();
-
-        //TODO: Date
         LocalDate dateSelection = date.getValue();
 
-        //TODO: Start
-        String sH = startHour.getValue();
-        String sM = startMinute.getValue();
+        //TODO: Start + Date
+        LocalTime startTime = LocalTime.of(Integer.valueOf(startHour.getValue()), Integer.valueOf(startMinute.getValue()));
+        System.out.println(startTime);
 
-        //TODO: End
-        String endHourValue = endHour.getValue();
-        String endMinuteValue = endMinute.getValue();
+        //TODO: End + Date
 
-        //TODO: dateTimeSelection test
 
 
         // ContactID, CustomerID, UserID
@@ -120,7 +126,8 @@ public class AddAppointments implements Initializable {
         customer.setItems(accessCustomers.getAllCustomers());
         user.setItems(accessUsers.getAllUsers());
 
+        // initializes Combo Boxes
+        initTime();
 
-        //TODO: initialize Combo Boxes
     }
 }
