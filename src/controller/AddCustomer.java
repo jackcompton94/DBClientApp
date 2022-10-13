@@ -18,6 +18,10 @@ import model.Division;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class AddCustomer implements Initializable {
@@ -57,10 +61,14 @@ public class AddCustomer implements Initializable {
             String addressText = address.getText();
             String postalCodeText = postalCode.getText();
             String phoneText = phone.getText();
+            Timestamp createDate = Timestamp.valueOf(LocalDateTime.now());
+            String createdBy = "get current user";
+            Timestamp lastUpdate = Timestamp.valueOf(LocalDateTime.now());
+            String lastUpdatedBy = "get current user";
             Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
             Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
 
-            accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, divisionIdText);
+            accessCustomers.insert(customerNameText, addressText, postalCodeText, phoneText, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionIdText);
             successLabel.setVisible(true);
 
         } catch (NullPointerException e){

@@ -19,6 +19,8 @@ import model.Division;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -78,11 +80,13 @@ public class EditCustomer implements Initializable {
             String addressText = address.getText();
             String postalCodeText = postalCode.getText();
             String phoneText = phone.getText();
+            Timestamp lastUpdate = Timestamp.valueOf(LocalDateTime.now());
+            String lastUpdatedBy = "get current user";
             Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
             Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
             Integer customerIdText = Integer.valueOf(customerId.getText());
 
-            accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, divisionIdText, customerIdText);
+            accessCustomers.update(customerNameText, addressText, postalCodeText, phoneText, lastUpdate, lastUpdatedBy, divisionIdText, customerIdText);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully updated customer!");
             Optional<ButtonType> result = alert.showAndWait();

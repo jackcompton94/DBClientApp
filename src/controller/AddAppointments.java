@@ -99,6 +99,11 @@ public class AddAppointments implements Initializable {
         LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.valueOf(endMinute.getValue()), 00);
         LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
 
+        LocalDateTime createDate = LocalDateTime.now();
+        String createdBy = "get current user";
+        LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdatedBy = "get current user";
+
         // ContactID, CustomerID, UserID
         Contact selectedContact = contact.getValue();
         int contactId = selectedContact.getContactId();
@@ -109,7 +114,7 @@ public class AddAppointments implements Initializable {
         User selectedUser = user.getValue();
         int userId = selectedUser.getUserId();
 
-        accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, customerId, userId, contactId);
+        accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
         successLabel.setVisible(true);
     }
 

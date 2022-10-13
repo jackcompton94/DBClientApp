@@ -35,27 +35,33 @@ public abstract class accessCustomers {
         return customerList;
     }
 
-    public static int insert(String customerName, String address, String postalCode, String phone, int divisionId) throws SQLException {
-        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?,?,?,?,?)";
+    public static int insert(String customerName, String address, String postalCode, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionId) throws SQLException {
+        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2, address);
         ps.setString(3, postalCode);
         ps.setString(4, phone);
-        ps.setInt(5,divisionId);
+        ps.setTimestamp(5,createDate);
+        ps.setString(6,createdBy);
+        ps.setTimestamp(7,lastUpdate);
+        ps.setString(8,lastUpdatedBy);
+        ps.setInt(9,divisionId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
 
-    public static int update(String customerName, String address, String postalCode, String phone, int divisionId, int customerId) throws SQLException {
-        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
+    public static int update(String customerName, String address, String postalCode, String phone, Timestamp lastUpdate, String lastUpdatedBy, int divisionId, int customerId) throws SQLException {
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2, address);
         ps.setString(3, postalCode);
         ps.setString(4, phone);
-        ps.setInt(5, divisionId);
-        ps.setInt(6, customerId);
+        ps.setTimestamp(5,lastUpdate);
+        ps.setString(6,lastUpdatedBy);
+        ps.setInt(7, divisionId);
+        ps.setInt(8, customerId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }

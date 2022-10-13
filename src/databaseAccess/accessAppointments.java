@@ -42,8 +42,8 @@ public abstract class accessAppointments {
         return appointmentList;
     }
 
-    public static int insert(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int customerId, int userId, int contactId) throws SQLException {
-        String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?)";
+    public static int insert(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) throws SQLException {
+        String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, title);
         ps.setString(2, description);
@@ -51,9 +51,13 @@ public abstract class accessAppointments {
         ps.setString(4, type);
         ps.setTimestamp(5, Timestamp.valueOf(start));
         ps.setTimestamp(6, Timestamp.valueOf(end));
-        ps.setInt(7,customerId);
-        ps.setInt(8,userId);
-        ps.setInt(9, contactId);
+        ps.setTimestamp(7,Timestamp.valueOf(createDate));
+        ps.setString(8,createdBy);
+        ps.setTimestamp(9,Timestamp.valueOf(lastUpdate));
+        ps.setString(10,lastUpdatedBy);
+        ps.setInt(11,customerId);
+        ps.setInt(12,userId);
+        ps.setInt(13, contactId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
