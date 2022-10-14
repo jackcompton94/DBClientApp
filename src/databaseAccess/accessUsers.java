@@ -3,6 +3,7 @@ package databaseAccess;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.PasswordField;
 import model.Contact;
 import model.User;
 

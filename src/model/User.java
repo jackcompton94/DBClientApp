@@ -1,17 +1,21 @@
 package model;
 
+import databaseAccess.accessUsers;
+import javafx.scene.control.PasswordField;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
 
-    public int userId;
+    private int userId;
     private String userName;
     private String password;
     private Date createDate;
     private String createdBy;
     private Timestamp lastUpdated;
     private String lastUpdatedBy;
+    public static String currentUser;
 
     public User(int userId, String userName, String password, Date createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy) {
         this.userId = userId;
@@ -52,7 +56,21 @@ public class User {
     }
 
     @Override
-    public String toString(){   // overrides default Object Class behavior when added to a ComboBox
+    public String toString() {   // overrides default Object Class behavior when added to a ComboBox
         return ("ID [" + getUserId() + "] " + getUserName());
+    }
+
+    public static boolean authUser(String user, String pass) {
+        for (User u : accessUsers.getAllUsers()) {
+            currentUser = user;
+            if (user.equals(u.getUserName())) {
+                if (pass.equals(u.getPassword())) {
+                    System.out.println("User Authenticated: " + currentUser);
+                    return true;
+                }
+            }
+        }
+        System.out.println("User Failed Authentication: " + currentUser);
+        return false;
     }
 }

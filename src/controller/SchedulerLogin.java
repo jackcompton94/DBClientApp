@@ -6,11 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.User;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -46,27 +45,21 @@ public class SchedulerLogin implements Initializable {
     private Label password;
 
     public void onActionSignIn(ActionEvent actionEvent) throws IOException {
-        // TODO: create authentication logic around Users table
-        // test username & password
-        /*if ((usernameText.getText().equals("sqlUser")) && (passwordText.getText().equals("Passw0rd!"))) {
-            System.out.println("valid credentials");
-            invalidLogin.setVisible(false);*/
+        String user = usernameText.getText();
+        String pass = passwordText.getText();
+
+        if (User.authUser(user, pass)) {
 
             // prompts MainMenu if login was successful
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
-        }/*
-        else if ((username.getText().isEmpty()) || passwordText.getText().isEmpty()) {
-            System.out.println("need credentials");
-            invalidLogin.setVisible(true);
         }
         else {
-            System.out.println("invalid credentials");
             invalidLogin.setVisible(true);
         }
-    }*/
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

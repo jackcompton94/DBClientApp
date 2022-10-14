@@ -170,7 +170,7 @@ public class EditAppointment implements Initializable {
             LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
 
             LocalDateTime lastUpdate = LocalDateTime.now();
-            String lastUpdatedBy = "get current user";
+            String lastUpdatedBy = User.currentUser;
 
 
             // ContactID, CustomerID, UserID

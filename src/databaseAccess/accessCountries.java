@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import model.Country;
 import java.sql.*;
 
-public class accessCountries {
+public abstract class accessCountries {
 
     public static ObservableList<Country> getAllCountries() {
 

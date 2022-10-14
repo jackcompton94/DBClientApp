@@ -99,9 +99,9 @@ public class AddAppointments implements Initializable {
             LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);                                           // End + Date
 
             LocalDateTime createDate = LocalDateTime.now();
-            String createdBy = "get current user";
+            String createdBy = User.currentUser;
             LocalDateTime lastUpdate = LocalDateTime.now();
-            String lastUpdatedBy = "get current user";
+            String lastUpdatedBy = User.currentUser;
 
             Contact selectedContact = contact.getValue();                                                                   // ContactID, CustomerID, UserID
             int contactId = selectedContact.getContactId();

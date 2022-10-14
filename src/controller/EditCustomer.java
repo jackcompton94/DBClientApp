@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import model.Country;
 import model.Customer;
 import model.Division;
+import model.User;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -81,7 +83,7 @@ public class EditCustomer implements Initializable {
             String postalCodeText = postalCode.getText();
             String phoneText = phone.getText();
             Timestamp lastUpdate = Timestamp.valueOf(LocalDateTime.now());
-            String lastUpdatedBy = "get current user";
+            String lastUpdatedBy = User.currentUser;
             Division selectedDivision = division.getSelectionModel().getSelectedItem();    // captures the selected division
             Integer divisionIdText = selectedDivision.getDivisionId();                     // captures the select divisionID
             Integer customerIdText = Integer.valueOf(customerId.getText());
