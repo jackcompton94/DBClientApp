@@ -129,6 +129,15 @@ public class ViewAppointments implements Initializable {
         }
     }
 
+    public void viewCurrentWeekAppointments(ActionEvent actionEvent) {
+    }
+
+    public void viewCurrentMonthAppointments(ActionEvent actionEvent) {
+    }
+
+    public void viewAllAppointments(ActionEvent actionEvent) {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
