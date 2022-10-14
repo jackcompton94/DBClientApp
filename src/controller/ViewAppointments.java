@@ -2,6 +2,8 @@ package controller;
 
 import databaseAccess.accessAppointments;
 import databaseAccess.accessCustomers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.chrono.ChronoLocalDateTime;
+import java.time.chrono.Chronology;
+import java.time.temporal.TemporalField;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -130,12 +139,55 @@ public class ViewAppointments implements Initializable {
     }
 
     public void viewCurrentWeekAppointments(ActionEvent actionEvent) {
+        ObservableList<Appointment> viewCurrentWeek = FXCollections.observableArrayList();
+
+        for (Appointment a : accessAppointments.getAllAppointments()) {
+            LocalDateTime appointmentDay = a.getStart();
+            LocalDateTime today = LocalDateTime.now();
+
+            if (today.getDayOfWeek() == DayOfWeek.MONDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(6);
+            }
+            if (today.getDayOfWeek() == DayOfWeek.TUESDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(5);
+            }
+            if (today.getDayOfWeek() == DayOfWeek.WEDNESDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(4);
+            }
+            if (today.getDayOfWeek() == DayOfWeek.THURSDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(3);
+            }
+            if (today.getDayOfWeek() == DayOfWeek.FRIDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(2);
+            }
+            if (today.getDayOfWeek() == DayOfWeek.SATURDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(1);
+            }
+
+            // show meetinings before endofcurrentweek
+            if () {
+                viewCurrentWeek.add(a);
+            }
+        }
+        appointmentTableView.setItems(viewCurrentWeek);
     }
 
     public void viewCurrentMonthAppointments(ActionEvent actionEvent) {
+        ObservableList<Appointment> viewCurrentMonth = FXCollections.observableArrayList();
+
+        Month currentMonth = LocalDateTime.now().getMonth();
+
+        for (Appointment a : accessAppointments.getAllAppointments()) {
+            if (a.getStart().getMonth() == currentMonth) {
+                viewCurrentMonth.add(a);
+            }
+        }
+        appointmentTableView.setItems(viewCurrentMonth);
     }
 
     public void viewAllAppointments(ActionEvent actionEvent) {
+        ObservableList<Appointment> allAppointments = accessAppointments.getAllAppointments();
+        appointmentTableView.setItems(allAppointments);
     }
 
     @Override
