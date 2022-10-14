@@ -184,31 +184,24 @@ public class EditAppointment implements Initializable {
             int userId = selectedUser.getUserId();
 
             if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Format Error");
-                alert.setContentText("Unable to save appointment. Please enter missing information.");
-                alert.showAndWait();
+                Alert missingInfo = new Alert(Alert.AlertType.ERROR);
+                missingInfo.setTitle("Format Error");
+                missingInfo.setContentText("Unable to save appointment. Please enter missing information.");
+                missingInfo.showAndWait();
             }
 
-            if (startDateTime.isAfter(endDateTime)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Format Error");
-                alert.setContentText("Unable to save appointment. Start Time cannot be after End Time.");
-                alert.showAndWait();
+            else if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
+                Alert timeError = new Alert(Alert.AlertType.ERROR);
+                timeError.setTitle("Format Error");
+                timeError.setContentText("Unable to save appointment. Please confirm that your Start and End times are correct.");
+                timeError.showAndWait();
             }
 
-            if (startDateTime.isBefore(LocalDateTime.now())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Format Error");
-                alert.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
-                alert.showAndWait();
-            }
-
-            else if (startDateTime.isEqual(endDateTime)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Format Error");
-                alert.setContentText("Unable to save appointment. Start and End Time cannot be the same.");
-                alert.showAndWait();
+            else if (startDateTime.isBefore(LocalDateTime.now())) {
+                Alert dateError = new Alert(Alert.AlertType.ERROR);
+                dateError.setTitle("Format Error");
+                dateError.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
+                dateError.showAndWait();
             }
 
             else {
