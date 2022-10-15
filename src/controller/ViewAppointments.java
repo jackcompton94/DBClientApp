@@ -142,34 +142,60 @@ public class ViewAppointments implements Initializable {
         ObservableList<Appointment> viewCurrentWeek = FXCollections.observableArrayList();
 
         for (Appointment a : accessAppointments.getAllAppointments()) {
-            LocalDateTime appointmentDay = a.getStart();
             LocalDateTime today = LocalDateTime.now();
 
-            if (today.getDayOfWeek() == DayOfWeek.MONDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(6);
-            }
-            if (today.getDayOfWeek() == DayOfWeek.TUESDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(5);
-            }
-            if (today.getDayOfWeek() == DayOfWeek.WEDNESDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(4);
-            }
-            if (today.getDayOfWeek() == DayOfWeek.THURSDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(3);
-            }
-            if (today.getDayOfWeek() == DayOfWeek.FRIDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(2);
-            }
-            if (today.getDayOfWeek() == DayOfWeek.SATURDAY) {
-                LocalDateTime endOfCurrentWeek = today.plusDays(1);
+            if (today.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(7);
+                LocalDateTime startOfCurrentWeek = today.minusDays(0);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
             }
 
-            // show meetinings before endofcurrentweek
-            if () {
-                viewCurrentWeek.add(a);
+            else if (today.getDayOfWeek() == DayOfWeek.MONDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(6);
+                LocalDateTime startOfCurrentWeek = today.minusDays(1);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
             }
+            else if (today.getDayOfWeek() == DayOfWeek.TUESDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(5);
+                LocalDateTime startOfCurrentWeek = today.minusDays(2);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
+            }
+            else if (today.getDayOfWeek() == DayOfWeek.WEDNESDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(4);
+                LocalDateTime startOfCurrentWeek = today.minusDays(3);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
+            }
+            else if (today.getDayOfWeek() == DayOfWeek.THURSDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(3);
+                LocalDateTime startOfCurrentWeek = today.minusDays(4);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
+            }
+            else if (today.getDayOfWeek() == DayOfWeek.FRIDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(2);
+                LocalDateTime startOfCurrentWeek = today.minusDays(5);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
+            }
+            else if (today.getDayOfWeek() == DayOfWeek.SATURDAY) {
+                LocalDateTime endOfCurrentWeek = today.plusDays(1);
+                LocalDateTime startOfCurrentWeek = today.minusDays(6);
+                if (a.getStart().isBefore(endOfCurrentWeek) && a.getStart().isAfter(startOfCurrentWeek)) {
+                    viewCurrentWeek.add(a);
+                }
+            }
+            appointmentTableView.setItems(viewCurrentWeek);
         }
-        appointmentTableView.setItems(viewCurrentWeek);
     }
 
     public void viewCurrentMonthAppointments(ActionEvent actionEvent) {
