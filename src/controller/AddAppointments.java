@@ -21,10 +21,8 @@ import model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
+import java.time.*;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -86,6 +84,12 @@ public class AddAppointments implements Initializable {
     public void save(ActionEvent actionEvent) throws SQLException {
 
         // TODO: define business hours
+        ZoneId est = ZoneId.of("America/New_York");
+        LocalTime open = LocalTime.of(8,0);
+        ZonedDateTime startBusiness = ZonedDateTime.of(LocalDateTime.from(open),est);
+
+        LocalTime close = LocalTime.of(22,0);
+        ZonedDateTime endBusiness = ZonedDateTime.of(LocalDateTime.from(close),est);
 
         try {
             String titleText = title.getText();
@@ -93,20 +97,24 @@ public class AddAppointments implements Initializable {
             String locationText = location.getText();
             String typeText = type.getText();
 
-            LocalDate dateSelection = date.getValue();                                                                      // Date
+            // Date
+            LocalDate dateSelection = date.getValue();
 
+            // Start + Date
             LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.parseInt(startMinute.getValue()), 00);
-            LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);                                       // Start + Date
+            LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
 
+            // End + Date
             LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.parseInt(endMinute.getValue()), 00);
-            LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);                                           // End + Date
+            LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
 
             LocalDateTime createDate = LocalDateTime.now();
             String createdBy = User.currentUser;
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdatedBy = User.currentUser;
 
-            Contact selectedContact = contact.getValue();                                                                   // ContactID, CustomerID, UserID
+            // ContactID, CustomerID, UserID
+            Contact selectedContact = contact.getValue();
             int contactId = selectedContact.getContactId();
 
             Customer selectedCustomer = customer.getValue();
@@ -134,6 +142,11 @@ public class AddAppointments implements Initializable {
                 dateError.setTitle("Format Error");
                 dateError.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
                 dateError.showAndWait();
+            }
+
+            // TODO: add business hours in parameters
+            else if (startDateTime.isBefore(ChronoLocalDateTime.from(startBusiness)) || startDateTime.isAfter(ChronoLocalDateTime.from(endBusiness)) || endDateTime.isBefore(ChronoLocalDateTime.from(startBusiness)) || endDateTime.isAfter(ChronoLocalDateTime.from(endBusiness))) {
+
             }
             else {
                 accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
