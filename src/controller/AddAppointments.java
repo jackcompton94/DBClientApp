@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Contact;
 import model.Customer;
 import model.User;
@@ -159,6 +160,9 @@ public class AddAppointments implements Initializable {
                 timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
                 timingError.showAndWait();
             }
+
+            //TODO: implement appointment overlap for customerID
+
 
             else {
                 accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
