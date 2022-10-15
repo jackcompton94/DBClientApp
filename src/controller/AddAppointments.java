@@ -83,14 +83,6 @@ public class AddAppointments implements Initializable {
 
     public void save(ActionEvent actionEvent) throws SQLException {
 
-        // TODO: define business hours
-        ZoneId est = ZoneId.of("America/New_York");
-        LocalTime open = LocalTime.of(8,0);
-        ZonedDateTime startBusiness = ZonedDateTime.of(LocalDateTime.from(open),est);
-
-        LocalTime close = LocalTime.of(22,0);
-        ZonedDateTime endBusiness = ZonedDateTime.of(LocalDateTime.from(close),est);
-
         try {
             String titleText = title.getText();
             String descriptionText = description.getText();
@@ -123,6 +115,22 @@ public class AddAppointments implements Initializable {
             User selectedUser = user.getValue();
             int userId = selectedUser.getUserId();
 
+            // define business hours
+            ZoneId est = ZoneId.of("America/New_York");
+            LocalTime ltOpen = LocalTime.of(8,0,0);
+            LocalTime ltClose = LocalTime.of(22,0,0);
+
+            // convert appointment time selections to current user time zone
+            ZonedDateTime zdtStart = ZonedDateTime.of(startDateTime, ZoneId.systemDefault());
+            ZonedDateTime zdtEnd = ZonedDateTime.of(endDateTime, ZoneId.systemDefault());
+
+            // assign converted appointment times to ldt for evaluation of EST business hours
+            LocalDateTime ldtOpen = LocalDateTime.of(LocalDate.from(zdtStart), ltOpen);
+            LocalDateTime ldtClose = LocalDateTime.of(LocalDate.from(zdtEnd), ltClose);
+
+            ZonedDateTime open = ZonedDateTime.of(ldtOpen, est);
+            ZonedDateTime close = ZonedDateTime.of(ldtClose, est);
+
             if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
                 Alert missingInfo = new Alert(Alert.AlertType.ERROR);
                 missingInfo.setTitle("Format Error");
@@ -144,10 +152,14 @@ public class AddAppointments implements Initializable {
                 dateError.showAndWait();
             }
 
-            // TODO: add business hours in parameters
-            else if (startDateTime.isBefore(ChronoLocalDateTime.from(startBusiness)) || startDateTime.isAfter(ChronoLocalDateTime.from(endBusiness)) || endDateTime.isBefore(ChronoLocalDateTime.from(startBusiness)) || endDateTime.isAfter(ChronoLocalDateTime.from(endBusiness))) {
-
+            // business hour validation (8am - 10pm including weekends)
+            else if (zdtStart.isBefore(open)|| zdtEnd.isAfter(close) || zdtStart.isBefore(open) || zdtEnd.isAfter(close)) {
+                Alert timingError = new Alert(Alert.AlertType.ERROR);
+                timingError.setTitle("Timing Error");
+                timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
+                timingError.showAndWait();
             }
+
             else {
                 accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
                 successLabel.setVisible(true);

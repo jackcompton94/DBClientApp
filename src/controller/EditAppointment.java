@@ -24,9 +24,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -183,6 +181,22 @@ public class EditAppointment implements Initializable {
             User selectedUser = user.getValue();
             int userId = selectedUser.getUserId();
 
+            // define business hours
+            ZoneId est = ZoneId.of("America/New_York");
+            LocalTime ltOpen = LocalTime.of(8,0,0);
+            LocalTime ltClose = LocalTime.of(22,0,0);
+
+            // convert appointment time selections to current user time zone
+            ZonedDateTime zdtStart = ZonedDateTime.of(startDateTime, ZoneId.systemDefault());
+            ZonedDateTime zdtEnd = ZonedDateTime.of(endDateTime, ZoneId.systemDefault());
+
+            // assign converted appointment times to ldt for evaluation of EST business hours
+            LocalDateTime ldtOpen = LocalDateTime.of(LocalDate.from(zdtStart), ltOpen);
+            LocalDateTime ldtClose = LocalDateTime.of(LocalDate.from(zdtEnd), ltClose);
+
+            ZonedDateTime open = ZonedDateTime.of(ldtOpen, est);
+            ZonedDateTime close = ZonedDateTime.of(ldtClose, est);
+
             if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
                 Alert missingInfo = new Alert(Alert.AlertType.ERROR);
                 missingInfo.setTitle("Format Error");
@@ -202,6 +216,14 @@ public class EditAppointment implements Initializable {
                 dateError.setTitle("Format Error");
                 dateError.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
                 dateError.showAndWait();
+            }
+
+            // business hour validation (8am - 10pm including weekends)
+            else if (zdtStart.isBefore(open)|| zdtEnd.isAfter(close) || zdtStart.isBefore(open) || zdtEnd.isAfter(close)) {
+                Alert timingError = new Alert(Alert.AlertType.ERROR);
+                timingError.setTitle("Timing Error");
+                timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
+                timingError.showAndWait();
             }
 
             else {
