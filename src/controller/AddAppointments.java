@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -83,6 +84,8 @@ public class AddAppointments implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws SQLException {
+
+        // TODO: define business hours
 
         try {
             String titleText = title.getText();
