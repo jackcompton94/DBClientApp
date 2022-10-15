@@ -127,6 +127,7 @@ public class ViewAppointments implements Initializable {
 
             int appointmentToDelete = selection.getAppointmentId();
 
+            //TODO: improve this with lambda
             if (result.get() == ButtonType.OK) {
                 accessAppointments.delete(appointmentToDelete);
                 appointmentTableView.setItems(accessAppointments.getAllAppointments()); // refreshes after delete to remove the appointment view from TableView
@@ -138,6 +139,7 @@ public class ViewAppointments implements Initializable {
         }
     }
 
+    // TODO: improve this with lambda
     public void viewCurrentWeekAppointments(ActionEvent actionEvent) {
         ObservableList<Appointment> viewCurrentWeek = FXCollections.observableArrayList();
 
