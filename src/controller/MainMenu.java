@@ -47,6 +47,8 @@ public class MainMenu implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO: implement Appointment time checker (convert time into system default to alert the user of 15 minute warning)
+    }
 }
 

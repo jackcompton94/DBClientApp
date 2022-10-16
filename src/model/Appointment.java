@@ -93,4 +93,12 @@ public class Appointment {
     public int getContactId() {
         return contactId;
     }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
 }

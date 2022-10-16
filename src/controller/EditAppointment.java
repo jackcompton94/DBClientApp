@@ -155,7 +155,6 @@ public class EditAppointment implements Initializable {
             String locationText = location.getText();
             String typeText = type.getText();
 
-
             // Date
             LocalDate dateSelection = date.getValue();
 
@@ -169,7 +168,6 @@ public class EditAppointment implements Initializable {
 
             LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdatedBy = User.currentUser;
-
 
             // ContactID, CustomerID, UserID
             Contact selectedContact = contact.getValue();
@@ -196,6 +194,40 @@ public class EditAppointment implements Initializable {
 
             ZonedDateTime open = ZonedDateTime.of(ldtOpen, est);
             ZonedDateTime close = ZonedDateTime.of(ldtClose, est);
+
+            // clears previously set Start/End times for current appointment
+            for (Appointment a : accessAppointments.getAllAppointments()) {
+                if (a.getAppointmentId() == appointmentIdText) {
+                    a.setStart(null);
+                    a.setEnd(null);
+                    continue;
+                }
+
+                // overlapping appointment checker
+                if (a.getCustomerId() == customerId) {
+                    if (a.getStart().isBefore(startDateTime) && a.getEnd().isAfter(endDateTime) || a.getStart().isEqual(startDateTime) || a.getEnd().isEqual(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                    else if (a.getStart().isBefore(startDateTime) && a.getEnd().isAfter(startDateTime) || a.getStart().isBefore(endDateTime) && a.getEnd().isAfter(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                    else if (a.getStart().isAfter(startDateTime) && a.getEnd().isBefore(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                }
+            }
 
             if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
                 Alert missingInfo = new Alert(Alert.AlertType.ERROR);

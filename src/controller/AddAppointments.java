@@ -132,42 +132,59 @@ public class AddAppointments implements Initializable {
             ZonedDateTime open = ZonedDateTime.of(ldtOpen, est);
             ZonedDateTime close = ZonedDateTime.of(ldtClose, est);
 
-            if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
-                Alert missingInfo = new Alert(Alert.AlertType.ERROR);
-                missingInfo.setTitle("Format Error");
-                missingInfo.setContentText("Unable to save appointment. Please enter missing information.");
-                missingInfo.showAndWait();
+            // overlapping appointment checker
+            for (Appointment a : accessAppointments.getAllAppointments()) {
+                if (a.getCustomerId() == customerId) {
+                    if (a.getStart().isBefore(startDateTime) && a.getEnd().isAfter(endDateTime) || a.getStart().isEqual(startDateTime) || a.getEnd().isEqual(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                    else if (a.getStart().isBefore(startDateTime) && a.getEnd().isAfter(startDateTime) || a.getStart().isBefore(endDateTime) && a.getEnd().isAfter(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                    else if (a.getStart().isAfter(startDateTime) && a.getEnd().isBefore(endDateTime)) {
+                        Alert timingError = new Alert(Alert.AlertType.ERROR);
+                        timingError.setTitle("Timing Error");
+                        timingError.setContentText("Unable to save appointment. \nThe selected appointment time overlaps with appointment ID: " + a.getAppointmentId());
+                        timingError.showAndWait();
+                        return;
+                    }
+                }
             }
 
-            else if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
-                Alert timeError = new Alert(Alert.AlertType.ERROR);
-                timeError.setTitle("Format Error");
-                timeError.setContentText("Unable to save appointment. Please confirm that your Start and End times are correct.");
-                timeError.showAndWait();
-            }
-
-            else if (startDateTime.isBefore(LocalDateTime.now())) {
-                Alert dateError = new Alert(Alert.AlertType.ERROR);
-                dateError.setTitle("Format Error");
-                dateError.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
-                dateError.showAndWait();
-            }
-
-            // business hour validation (8am - 10pm including weekends)
-            else if (zdtStart.isBefore(open)|| zdtEnd.isAfter(close) || zdtStart.isBefore(open) || zdtEnd.isAfter(close)) {
-                Alert timingError = new Alert(Alert.AlertType.ERROR);
-                timingError.setTitle("Timing Error");
-                timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
-                timingError.showAndWait();
-            }
-
-            //TODO: implement appointment overlap for customerID
-
-
-            else {
-                accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
-                successLabel.setVisible(true);
-            }
+                if (titleText.isBlank() || descriptionText.isBlank() || locationText.isBlank() || typeText.isBlank()) {
+                    Alert missingInfo = new Alert(Alert.AlertType.ERROR);
+                    missingInfo.setTitle("Format Error");
+                    missingInfo.setContentText("Unable to save appointment. Please enter missing information.");
+                    missingInfo.showAndWait();
+                } else if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
+                    Alert timeError = new Alert(Alert.AlertType.ERROR);
+                    timeError.setTitle("Format Error");
+                    timeError.setContentText("Unable to save appointment. Please confirm that your Start and End times are correct.");
+                    timeError.showAndWait();
+                } else if (startDateTime.isBefore(LocalDateTime.now())) {
+                    Alert dateError = new Alert(Alert.AlertType.ERROR);
+                    dateError.setTitle("Format Error");
+                    dateError.setContentText("Unable to save appointment. The Start Time cannot be in the past.");
+                    dateError.showAndWait();
+                }
+                // business hour validation (8am - 10pm including weekends)
+                else if (zdtStart.isBefore(open) || zdtEnd.isAfter(close) || zdtStart.isBefore(open) || zdtEnd.isAfter(close)) {
+                    Alert timingError = new Alert(Alert.AlertType.ERROR);
+                    timingError.setTitle("Timing Error");
+                    timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
+                    timingError.showAndWait();
+                } else {
+                    accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
+                    successLabel.setVisible(true);
+                }
         } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Format Error");
