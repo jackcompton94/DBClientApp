@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.chrono.ChronoLocalDateTime;
 import java.time.chrono.Chronology;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalField;
 import java.util.Date;
 import java.util.Optional;
@@ -52,16 +53,16 @@ public class ViewAppointments implements Initializable {
     public TableColumn<Appointment, String> typeCol;
 
     @FXML
-    public TableColumn<Appointment, Date> startCol;
+    public TableColumn<Appointment, LocalDateTime> startCol;
 
     @FXML
-    public TableColumn<Appointment, Date> endCol;
+    public TableColumn<Appointment, LocalDateTime> endCol;
 
     @FXML
-    public TableColumn<Appointment, Date> createDateCol;
+    public TableColumn<Appointment, LocalDateTime> createDateCol;
 
     @FXML
-    public TableColumn<Appointment, Timestamp> lastUpdateCol;
+    public TableColumn<Appointment, LocalDateTime> lastUpdateCol;
 
     @FXML
     public TableColumn<Appointment, String> lastUpdatedByCol;

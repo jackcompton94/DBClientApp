@@ -1,5 +1,8 @@
 package controller;
 
+import databaseAccess.accessAppointments;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +11,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SchedulerLogin implements Initializable {
@@ -55,6 +65,34 @@ public class SchedulerLogin implements Initializable {
             scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
+
+            // 15 minute appointment checker
+            LocalDateTime currentTime = LocalDateTime.now();
+            ZonedDateTime currentTimeZone = ZonedDateTime.now();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            // initialize upcomingAppointments list with Appointment objects
+            ObservableList<Appointment> upcomingAppointments = FXCollections.observableArrayList();
+
+            for (Appointment a : accessAppointments.getAllAppointments()) {
+                LocalDateTime convertStart = LocalDateTime.from(a.getStart().atZone(ZoneId.from(currentTimeZone)));
+
+                if (convertStart.minusMinutes(15).isBefore(currentTime) && convertStart.isAfter(currentTime)) {
+                    upcomingAppointments.add(a);
+                }
+            }
+
+            if (upcomingAppointments.isEmpty()) {
+                Alert reminder = new Alert(Alert.AlertType.INFORMATION, "There are no upcoming appointments.");
+                Optional<ButtonType> result = reminder.showAndWait();
+            }
+            else {
+                // capture upcomingAppointments needed for 15 minute alert
+                for (Appointment a : upcomingAppointments) {
+                    Alert reminder = new Alert(Alert.AlertType.INFORMATION, "Appointment ID: " + a.getAppointmentId() + " is starting soon! \n\n" + a.getStart().format(dtf) + " " + currentTimeZone.getZone());
+                    Optional<ButtonType> result = reminder.showAndWait();
+                }
+            }
         }
         else {
             invalidLogin.setVisible(true);
