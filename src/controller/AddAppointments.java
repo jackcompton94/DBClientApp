@@ -27,6 +27,8 @@ import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import static java.time.ZoneOffset.UTC;
+
 public class AddAppointments implements Initializable {
 
     @FXML
@@ -96,10 +98,14 @@ public class AddAppointments implements Initializable {
             // Start + Date
             LocalTime startTime = LocalTime.of(startHour.getValue(), Integer.parseInt(startMinute.getValue()), 00);
             LocalDateTime startDateTime = LocalDateTime.of(dateSelection, startTime);
+            ZonedDateTime startUTC = ZonedDateTime.of(startDateTime, UTC);
+            LocalDateTime finalStart = startUTC.toLocalDateTime();
 
             // End + Date
             LocalTime endTime = LocalTime.of(endHour.getValue(), Integer.parseInt(endMinute.getValue()), 00);
             LocalDateTime endDateTime = LocalDateTime.of(dateSelection, endTime);
+            ZonedDateTime endUTC = ZonedDateTime.of(endDateTime, UTC);
+            LocalDateTime finalEnd = endUTC.toLocalDateTime();
 
             LocalDateTime createDate = LocalDateTime.now();
             String createdBy = User.currentUser;
@@ -182,7 +188,7 @@ public class AddAppointments implements Initializable {
                     timingError.setContentText("Unable to save appointment. Appointment time must be during business hours 8:00 - 22:00 EST");
                     timingError.showAndWait();
                 } else {
-                    accessAppointments.insert(titleText, descriptionText, locationText, typeText, startDateTime, endDateTime, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
+                    accessAppointments.insert(titleText, descriptionText, locationText, typeText, finalStart, finalEnd, createDate, createdBy, lastUpdate, lastUpdatedBy, customerId, userId, contactId);
                     successLabel.setVisible(true);
                 }
         } catch (NullPointerException e) {
