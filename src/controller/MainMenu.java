@@ -40,6 +40,9 @@ public class MainMenu implements Initializable {
         stage.show();
     }
 
+    public void viewReports(ActionEvent actionEvent) {
+    }
+
     public void signOut(ActionEvent actionEvent) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to sign out of Scheduler?");
