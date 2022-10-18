@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.User;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -24,6 +26,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static java.time.ZoneOffset.UTC;
 
 public class SchedulerLogin implements Initializable {
 
