@@ -237,11 +237,5 @@ public class ViewAppointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
-
-        DateTimeFormatter dtf =  DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
-        for (Appointment a : accessAppointments.getAllAppointments()) {
-            String formatStart = a.getStart().format(dtf);
-            String formatEnd = a.getEnd().format(dtf);
-        }
     }
 }
