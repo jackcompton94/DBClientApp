@@ -73,7 +73,7 @@ public class AddAppointments implements Initializable {
 
     public void initTime() {
         ObservableList<Integer> hourTimes = FXCollections.observableArrayList();
-        for (int i = 1; i <= 24; i++) {
+        for (int i = 0; i <= 23; i++) {
             hourTimes.add(i);
         }
         startHour.setItems(hourTimes);
