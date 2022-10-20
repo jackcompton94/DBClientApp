@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="1015.0" style="-fx-background-color: #f3fbff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomers">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="1030.0" style="-fx-background-color: #f3fbff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomers">
    <children>
       <Button fx:id="backButton" layoutX="14.0" layoutY="389.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #1E90FF; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10;" text="Back" textFill="GHOSTWHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="customerTableView" editable="true" layoutX="1.0" layoutY="55.0" maxWidth="1015.0" prefHeight="320.0" prefWidth="1015.0">
+      <TableView fx:id="customerTableView" editable="true" layoutX="8.0" layoutY="55.0" maxWidth="1015.0" prefHeight="320.0" prefWidth="1015.0">
         <columns>
           <TableColumn fx:id="customerIdCol" text="Customer_ID" />
           <TableColumn fx:id="customerNameCol" prefWidth="109.0" text="Customer_Name" />
@@ -25,7 +25,7 @@
             <TableColumn fx:id="createdByCol" prefWidth="91.0" text="Created_By" />
             <TableColumn fx:id="lastUpdateCol" prefWidth="112.0" text="Last_Update" />
             <TableColumn fx:id="lastUpdatedByCol" minWidth="0.0" prefWidth="121.0" text="Last_Updated_By" />
-            <TableColumn fx:id="divisionIdCol" prefWidth="94.0" resizable="false" text="Division_ID" />
+            <TableColumn fx:id="divisionIdCol" prefWidth="102.0" resizable="false" text="Division_ID" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

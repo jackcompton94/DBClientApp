@@ -238,4 +238,6 @@ public class ViewAppointments implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
     }
+
+
 }

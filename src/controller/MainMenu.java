@@ -40,7 +40,11 @@ public class MainMenu implements Initializable {
         stage.show();
     }
 
-    public void viewReports(ActionEvent actionEvent) {
+    public void viewReports(ActionEvent actionEvent) throws IOException {
+        stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/ViewReports.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void signOut(ActionEvent actionEvent) throws IOException {
