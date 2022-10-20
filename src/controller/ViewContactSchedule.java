@@ -1,7 +1,7 @@
 package controller;
 
 import databaseAccess.accessContactSchedule;
-import databaseAccess.accessMonthlyAppointments;
+import databaseAccess.accessContacts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,10 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewReports implements Initializable {
+public class ViewContactSchedule implements Initializable {
+
 
     @FXML
-    public TableView reportTableView;
+    public TableView contactScheduleTableView;
 
     @FXML
     public TableColumn contactIdCol;
@@ -47,34 +49,12 @@ public class ViewReports implements Initializable {
     @FXML
     public TableColumn customerIdCol;
 
-    public void back(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
-
-    public void viewMonthlyAppointments(ActionEvent actionEvent) {
-        reportTableView.setItems(accessMonthlyAppointments.getMonthlyAppointments());
-
-        /*
-        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("totalAppointments"));
-
-         */
-    }
-
-    public void viewContactSchedule(ActionEvent actionEvent) {
-        reportTableView.setItems(accessContactSchedule.getContactSchedule());
-    }
-
-    public void viewUserActivity(ActionEvent actionEvent) {
-    }
+    @FXML
+    public ComboBox contact;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        contactScheduleTableView.setItems(accessContactSchedule.getContactSchedule());
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -83,5 +63,14 @@ public class ViewReports implements Initializable {
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+
+        contact.setItems(accessContacts.getAllContacts());
+    }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/ReportMenu.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 }

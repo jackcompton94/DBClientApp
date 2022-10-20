@@ -1,6 +1,5 @@
 package controller;
 
-import databaseAccess.accessAppointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,14 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import model.Appointment;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -42,7 +36,7 @@ public class MainMenu implements Initializable {
 
     public void viewReports(ActionEvent actionEvent) throws IOException {
         stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/ViewReports.fxml"));
+        scene = FXMLLoader.load(getClass().getResource("/view/ReportMenu.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }
