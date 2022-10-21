@@ -16,7 +16,7 @@ public abstract class accessMonthlyAppointments {
         ObservableList<MonthlyAppointment> monthlyAppointmentList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT month(Start) AS Month, Type, COUNT(*) AS Total_Appointments FROM appointments GROUP BY Month, Type";
+            String sql = "SELECT monthname(Start) AS Month, Type, COUNT(*) AS Total_Appointments FROM appointments GROUP BY Month, Type";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public abstract class accessContactSchedule {
 
-    public static ObservableList<ContactSchedule> getContactSchedule() {
+    public static ObservableList<ContactSchedule> getAllContactSchedules() {
 
         ObservableList<ContactSchedule> contactScheduleList = FXCollections.observableArrayList();
 

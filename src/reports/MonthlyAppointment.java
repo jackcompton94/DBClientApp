@@ -6,18 +6,18 @@ import java.time.Month;
 
 public class MonthlyAppointment {
 
-    private String date;
+    private String month;
     private String type;
     private int totalAppointments;
 
-    public MonthlyAppointment(String date, String type, int totalAppointments) {
-        this.date = date;
+    public MonthlyAppointment(String month, String type, int totalAppointments) {
+        this.month = month;
         this.type = type;
         this.totalAppointments = totalAppointments;
     }
 
-    public String getDate() {
-        return date;
+    public String getMonth() {
+        return month;
     }
 
     public String getType() {

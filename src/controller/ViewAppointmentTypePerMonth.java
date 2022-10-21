@@ -32,12 +32,12 @@ public class ViewAppointmentTypePerMonth implements Initializable {
     public TableColumn totalAppointmentsCol;
 
     @FXML
-    public TableColumn dateCol;
+    public TableColumn monthCol;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentTypePerMonthTableView.setItems(accessMonthlyAppointments.getMonthlyAppointments());
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        monthCol.setCellValueFactory(new PropertyValueFactory<>("month"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         totalAppointmentsCol.setCellValueFactory(new PropertyValueFactory<>("totalAppointments"));
     }
