@@ -129,7 +129,6 @@ public class ViewAppointments implements Initializable {
         }
     }
 
-    // TODO: improve this with lambda
     public void viewCurrentWeekAppointments(ActionEvent actionEvent) {
         ObservableList<Appointment> viewCurrentWeek = FXCollections.observableArrayList();
 
