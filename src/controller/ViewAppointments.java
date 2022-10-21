@@ -199,7 +199,9 @@ public class ViewAppointments implements Initializable {
                 viewCurrentMonth.add(a);
             }
         }
-        appointmentTableView.setItems(viewCurrentMonth);
+
+        // lambda used to populate Current Month Appointment viewer
+        viewCurrentMonth.forEach(Appointment -> appointmentTableView.setItems(viewCurrentMonth));
     }
 
     public void viewAllAppointments(ActionEvent actionEvent) {

@@ -89,6 +89,7 @@ public class ViewContactSchedule implements Initializable {
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
 
-        contact.setItems(accessContacts.getAllContacts());
+        // lambda used to populate the 'contact' combo box with each Contact object
+        accessContacts.getAllContacts().forEach(Contact -> contact.setItems(accessContacts.getAllContacts()));
     }
 }
