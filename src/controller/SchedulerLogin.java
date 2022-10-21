@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.User;
+import reports.UserActivity;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -62,7 +63,7 @@ public class SchedulerLogin implements Initializable {
         String user = usernameText.getText();
         String pass = passwordText.getText();
 
-        if (User.authUser(user, pass)) {
+        if (UserActivity.authUser(user, pass)) {
 
             // prompts MainMenu if login was successful
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();

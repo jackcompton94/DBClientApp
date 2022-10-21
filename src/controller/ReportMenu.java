@@ -27,7 +27,11 @@ public class ReportMenu implements Initializable {
         stage.show();
     }
 
-    public void viewUserActivity(ActionEvent actionEvent) {
+    public void viewUserActivity(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewUserActivity.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @Override

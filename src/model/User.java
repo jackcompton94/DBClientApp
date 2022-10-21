@@ -1,16 +1,15 @@
 package model;
 
 import databaseAccess.accessUsers;
-import javafx.scene.control.PasswordField;
+import reports.UserActivity;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import static java.time.ZoneOffset.UTC;
 
@@ -68,26 +67,5 @@ public class User {
         return ("ID [" + getUserId() + "] " + getUserName());
     }
 
-    public static boolean authUser(String user, String pass) throws IOException {
-        for (User u : accessUsers.getAllUsers()) {
-            currentUser = user;
-            if (user.equals(u.getUserName())) {
-                if (pass.equals(u.getPassword())) {
 
-                    // writes to login_activity if successful
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    PrintWriter writer = new PrintWriter(new FileWriter("login_activity.txt", true));
-                    writer.write(LocalDateTime.now(UTC).format(dtf) + " | " + currentUser + " | success\n");
-                    writer.close();
-                    return true;
-                }
-            }
-        }
-        // writes to login_activity if invalid
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        BufferedWriter writer = new BufferedWriter(new FileWriter("login_activity.txt", true));
-        writer.write(LocalDateTime.now(UTC).format(dtf) + " | " + currentUser + " | invalid\n");
-        writer.close();
-        return false;
-    }
 }
