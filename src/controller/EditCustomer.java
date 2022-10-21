@@ -17,7 +17,6 @@ import model.Country;
 import model.Customer;
 import model.Division;
 import model.User;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

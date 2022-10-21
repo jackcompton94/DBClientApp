@@ -14,18 +14,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateTimeStringConverter;
 import model.Appointment;
 import model.Contact;
 import model.Customer;
 import model.User;
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 

@@ -34,10 +34,6 @@ public class ReportMenu implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
     public void viewMonthlyAppointment(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointmentTypePerMonth.fxml"));
@@ -51,4 +47,9 @@ public class ReportMenu implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
 }

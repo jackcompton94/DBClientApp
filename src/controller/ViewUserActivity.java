@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import reports.UserActivity;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +44,6 @@ public class ViewUserActivity implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userActivityTableView.setItems(UserActivity.getUserActivityRecords());
-
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));

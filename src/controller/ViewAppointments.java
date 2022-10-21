@@ -1,7 +1,6 @@
 package controller;
 
 import databaseAccess.accessAppointments;
-import databaseAccess.accessCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,21 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
-import model.Customer;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.chrono.ChronoLocalDateTime;
-import java.time.chrono.Chronology;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalField;
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -128,7 +118,6 @@ public class ViewAppointments implements Initializable {
 
             int appointmentToDelete = selection.getAppointmentId();
 
-            //TODO: improve this with lambda
             if (result.get() == ButtonType.OK) {
                 accessAppointments.delete(appointmentToDelete);
                 appointmentTableView.setItems(accessAppointments.getAllAppointments()); // refreshes after delete to remove the appointment view from TableView
@@ -238,6 +227,4 @@ public class ViewAppointments implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
     }
-
-
 }

@@ -16,10 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Appointment;
 import model.Contact;
 import reports.ContactSchedule;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
