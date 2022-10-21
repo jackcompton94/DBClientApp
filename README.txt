@@ -1,0 +1,36 @@
+PRFA - QAM2 - Software II Advanced Java Concepts
+
+Scheduler (DBClientApp)
+application version: 1.0
+
+Purpose
+This application is used to manage a customer list, and schedule appointments with customers for the contacts working at the company. 
+Additionally, this application features 3 reports to organize information related to: monthly appointments, individual contact schedules, and user login attempt logs.
+
+
+Author:
+Jack Compton - jackcompton94@gmail.com
+10/21/22
+
+
+IDE/Java Module: 
+IntelliJ IDEA Community 2021.1.3 x64
+JDK version used: JavaFX-SDK-17.0.1
+ 
+
+MySQL Connector: 
+mysql-connector-java-8.0.25
+
+
+Running the program:
+At launch, the user is presented with a login screen. The username/password is matched against
+a MySQL Server database for authentication. After login, three options are presented to the user including:
+View Customers, View Appointments, and View Reports.
+
+
+Additional Report:
+User Activity Report - this report accepts the 'login_activity.txt' file as input,
+and creates an object for each login to track who is accessing the Scheduler application.
+
+
+
