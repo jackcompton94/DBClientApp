@@ -1,4 +1,4 @@
-PRFA - QAM2 - Software II Advanced Java Concepts
+<b>PRFA - QAM2 - Software II Advanced Java Concepts</b>
 
 Scheduler (DBClientApp)
 application version: 1.0
