@@ -210,6 +210,7 @@ public class AddAppointments implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 

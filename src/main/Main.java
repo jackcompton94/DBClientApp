@@ -19,6 +19,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../view/SchedulerLogin.fxml"));
         primaryStage.setTitle("Scheduler");
         primaryStage.setScene(new Scene(root, 460, 360));
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 

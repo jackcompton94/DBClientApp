@@ -104,6 +104,7 @@ public class ViewCustomers implements Initializable {
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
         }
     }

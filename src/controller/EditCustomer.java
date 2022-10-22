@@ -81,6 +81,7 @@ public class EditCustomer implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -112,6 +113,7 @@ public class EditCustomer implements Initializable {
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
                 Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
                 stage.setScene(new Scene(scene));
+                stage.centerOnScreen();
                 stage.show();
             }
         } catch (NullPointerException | SQLException | IOException e){

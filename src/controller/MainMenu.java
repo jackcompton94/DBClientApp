@@ -27,6 +27,7 @@ public class MainMenu implements Initializable {
         stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -34,6 +35,7 @@ public class MainMenu implements Initializable {
         stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/ViewCustomers.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -41,6 +43,7 @@ public class MainMenu implements Initializable {
         stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/ReportMenu.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -53,6 +56,7 @@ public class MainMenu implements Initializable {
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/SchedulerLogin.fxml"));
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
         }
     }

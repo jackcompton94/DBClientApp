@@ -28,6 +28,7 @@ public class ReportMenu implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -35,6 +36,7 @@ public class ReportMenu implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewUserActivity.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -42,6 +44,7 @@ public class ReportMenu implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointmentTypePerMonth.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -49,6 +52,7 @@ public class ReportMenu implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewContactSchedule.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 

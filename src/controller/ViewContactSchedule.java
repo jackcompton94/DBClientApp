@@ -84,6 +84,7 @@ public class ViewContactSchedule implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ReportMenu.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 

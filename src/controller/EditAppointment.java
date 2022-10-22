@@ -277,6 +277,7 @@ public class EditAppointment implements Initializable {
                 Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
                 Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
                 stage.setScene(new Scene(scene));
+                stage.centerOnScreen();
                 stage.show();
             }
         } catch (NullPointerException e) {
@@ -292,6 +293,7 @@ public class EditAppointment implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(getClass().getResource("/view/ViewAppointments.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 

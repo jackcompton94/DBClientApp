@@ -74,6 +74,7 @@ public class SchedulerLogin implements Initializable {
             stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
             // 15 minute appointment checker

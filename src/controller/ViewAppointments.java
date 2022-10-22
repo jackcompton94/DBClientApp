@@ -76,6 +76,7 @@ public class ViewAppointments implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/MainMenu.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -83,6 +84,7 @@ public class ViewAppointments implements Initializable {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/AddAppointments.fxml"));
         stage.setScene(new Scene(scene));
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -114,6 +116,7 @@ public class ViewAppointments implements Initializable {
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
         }
     }
