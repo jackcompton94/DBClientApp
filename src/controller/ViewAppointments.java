@@ -238,6 +238,12 @@ public class ViewAppointments implements Initializable {
         appointmentTableView.setItems(allAppointments);
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes ViewAppointments with all appointments currently available via accessAppointments
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

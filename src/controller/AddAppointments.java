@@ -214,6 +214,14 @@ public class AddAppointments implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes AddAppointments by setting the successLabel to false (until triggered)
+     * initializes Contact, Customer, and User combo boxes
+     * calls initTime() to initialize time selections
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successLabel.setVisible(false);

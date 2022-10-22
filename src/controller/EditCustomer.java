@@ -148,9 +148,16 @@ public class EditCustomer implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes EditCustomer by setting Country selection options
+     * sets Division unavailable until Country is picked
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
-        division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
+        country.setItems(accessCountries.getAllCountries());
+        division.setDisable(true);
     }
 }

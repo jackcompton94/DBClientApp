@@ -35,6 +35,12 @@ public class ViewAppointmentTypePerMonth implements Initializable {
     @FXML
     public TableColumn monthCol;
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes ViewAppointmentTypePerMonth with accessMonthlyAppointments query for the required report
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentTypePerMonthTableView.setItems(accessMonthlyAppointments.getMonthlyAppointments());

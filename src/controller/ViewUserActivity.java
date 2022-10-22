@@ -46,6 +46,12 @@ public class ViewUserActivity implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes ViewUserActivity with the "login_activity.txt" file scanned from authUser()
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userActivityTableView.setItems(UserActivity.getUserActivityRecords());

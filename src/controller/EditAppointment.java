@@ -297,6 +297,13 @@ public class EditAppointment implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes EditAppointment by setting Contacts, Customers and Users in their respective ComboBoxes
+     * initTime() is called to set the time selections
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //initializes Contacts, Customers, and Users

@@ -93,7 +93,7 @@ public class ViewContactSchedule implements Initializable {
      * @param url
      * @param resourceBundle
      * initializes ViewContactSchedule with the necessary column fields
-     * @lambda written to populate the contact combo box ptions
+     * @lambda written to populate the contact combo box options
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -140,6 +140,12 @@ public class ViewCustomers implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes ViewCustomers with all customers available via accessCustomers()
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

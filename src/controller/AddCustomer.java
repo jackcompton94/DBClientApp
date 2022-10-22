@@ -117,10 +117,18 @@ public class AddCustomer implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes AddCustomer by setting Country selections in the Country ComboBox
+     * disables the selection of Division ComboBox until a Country is selected
+     * hides successLabel notification
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        country.setItems(accessCountries.getAllCountries());    // enables all countries to be selected
-        division.setDisable(true);                              // initializes division ComboBox as disabled to force user to select a Country first
-        successLabel.setVisible(false);                         // hides successLabel notification
+        country.setItems(accessCountries.getAllCountries());
+        division.setDisable(true);
+        successLabel.setVisible(false);
     }
 }
