@@ -3,6 +3,10 @@ package model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class Country {
 
     private int countryId;

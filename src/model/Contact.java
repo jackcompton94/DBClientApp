@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class Contact {
 
     private int contactId;

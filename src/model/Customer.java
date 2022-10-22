@@ -1,9 +1,10 @@
 package model;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+
+/**
+ * @Author Jack Compton
+ */
 
 public class Customer {
 

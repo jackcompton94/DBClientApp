@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessAppointments {
 
     public static ObservableList<Appointment> getAllAppointments() {

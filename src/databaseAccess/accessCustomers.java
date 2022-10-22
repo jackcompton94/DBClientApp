@@ -6,6 +6,10 @@ import model.Customer;
 import javafx.collections.ObservableList;
 import java.sql.*;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessCustomers {
 
     public static ObservableList<Customer> getAllCustomers() {

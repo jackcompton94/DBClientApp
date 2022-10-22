@@ -1,5 +1,9 @@
 package reports;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class MonthlyAppointment {
 
     private String month;

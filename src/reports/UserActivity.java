@@ -13,6 +13,10 @@ import java.util.Scanner;
 
 import static java.time.ZoneOffset.UTC;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class UserActivity {
 
     public static ObservableList<UserActivity> userActivityRecords = FXCollections.observableArrayList();

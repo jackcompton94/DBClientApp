@@ -4,6 +4,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";

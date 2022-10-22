@@ -21,6 +21,10 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class ViewCustomers implements Initializable {
 
     @FXML

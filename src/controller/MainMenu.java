@@ -14,6 +14,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class MainMenu implements Initializable {
 
     Stage stage;

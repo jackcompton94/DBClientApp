@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class ViewUserActivity implements Initializable {
 
     @FXML

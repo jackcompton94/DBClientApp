@@ -22,6 +22,10 @@ import java.time.Month;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class ViewAppointments implements Initializable {
 
     @FXML
@@ -82,6 +86,11 @@ public class ViewAppointments implements Initializable {
         stage.show();
     }
 
+    /**
+     * editAppointment when selected, takes the selected appointment and "passes" the object into the EditAppointmentController
+     * @param actionEvent
+     * @throws IOException
+     */
     public void editAppointment(ActionEvent actionEvent) throws IOException {
         Appointment selection = appointmentTableView.getSelectionModel().getSelectedItem();
 
@@ -129,6 +138,11 @@ public class ViewAppointments implements Initializable {
         }
     }
 
+    /**
+     * viewCurrentWeekAppointments is a toggle button and when selected creates a viewCurrentWeek ObservableList that is based on
+     * the current day, plus or minus the days required to instantiate a week Sunday-Saturday
+     * @param actionEvent
+     */
     public void viewCurrentWeekAppointments(ActionEvent actionEvent) {
         ObservableList<Appointment> viewCurrentWeek = FXCollections.observableArrayList();
 
@@ -189,6 +203,11 @@ public class ViewAppointments implements Initializable {
         }
     }
 
+    /**
+     * creates an ObservableList based on the currentMonth
+     * @param actionEvent
+     * @lambda viewCurrentMonth.forEach(Appointment -> appointmentTableView.setItems(viewCurrentMonth));
+     */
     public void viewCurrentMonthAppointments(ActionEvent actionEvent) {
         ObservableList<Appointment> viewCurrentMonth = FXCollections.observableArrayList();
 
@@ -199,6 +218,7 @@ public class ViewAppointments implements Initializable {
                 viewCurrentMonth.add(a);
             }
         }
+
 
         // lambda used to populate Current Month Appointment viewer
         viewCurrentMonth.forEach(Appointment -> appointmentTableView.setItems(viewCurrentMonth));

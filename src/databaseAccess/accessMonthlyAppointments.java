@@ -9,6 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessMonthlyAppointments {
 
     public static ObservableList<MonthlyAppointment> getMonthlyAppointments() {

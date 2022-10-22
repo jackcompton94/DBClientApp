@@ -23,6 +23,10 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class SchedulerLogin implements Initializable {
 
     Stage stage;

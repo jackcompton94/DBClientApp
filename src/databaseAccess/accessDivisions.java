@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 import model.Division;
 import java.sql.*;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessDivisions {
 
     public static ObservableList<Division> getAllDivisions() {

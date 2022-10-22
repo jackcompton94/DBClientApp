@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 import model.Country;
 import java.sql.*;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessCountries {
 
     public static ObservableList<Country> getAllCountries() {

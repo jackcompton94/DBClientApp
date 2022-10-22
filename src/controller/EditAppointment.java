@@ -25,6 +25,10 @@ import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class EditAppointment implements Initializable {
 
     @FXML
@@ -66,6 +70,10 @@ public class EditAppointment implements Initializable {
     @FXML
     private ComboBox<User> user;
 
+    /**
+     * initializes the combo boxes used to capture the desired start and end time for new appointments
+     *
+     */
     public void initTime() {
         ObservableList<Integer> hourTimes = FXCollections.observableArrayList();
         for (int i = 0; i <= 23; i++) {
@@ -79,6 +87,10 @@ public class EditAppointment implements Initializable {
         endMinute.setItems(minuteTimes);
     }
 
+    /**
+     * "catches" the data "passed" from the ViewAppointments.editAppointment() method
+     * @param appointment
+     */
     public void sendAppointment(Appointment appointment) {
         appointmentId.setText(String.valueOf(appointment.getAppointmentId()));
         title.setText(appointment.getTitle());

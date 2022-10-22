@@ -2,6 +2,10 @@ package model;
 
 import java.time.LocalDateTime;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class Appointment {
 
     private int appointmentId;

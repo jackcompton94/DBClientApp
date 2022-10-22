@@ -2,6 +2,10 @@ package reports;
 
 import java.time.LocalDateTime;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class ContactSchedule {
 
     private int contactId;

@@ -26,6 +26,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class AddCustomer implements Initializable {
 
     @FXML
@@ -48,6 +52,29 @@ public class AddCustomer implements Initializable {
 
     @FXML
     private Label successLabel;
+
+    /**
+     * selectCountry is a method used to reset the division combo boxed based on the Country selection
+     * @param actionEvent
+     */
+    public void selectCountry(ActionEvent actionEvent) {
+        successLabel.setVisible(false);                                                     // hides successLabel on click, resets the label for confirmation of additional saves in one session
+        division.setDisable(false);                                                         // enables division selection after country is selected
+
+        division.setItems(accessDivisions.getAllDivisions());                               // enables all divisions to be selected
+
+        Country selectedCountry = country.getSelectionModel().getSelectedItem();            // captures the selected country object
+        int countryId = selectedCountry.getCountryId();                                     // captures the selected country ID for matching purposes
+        ObservableList<Division> divisionsInCountry = FXCollections.observableArrayList();  // initializes the temporary available divisions per country selection
+        divisionsInCountry.clear();
+
+        for (Division d : division.getItems()) {                                            // loops through all divisions to match selectedCountryId with the d.CountryId and add those matches to our observableList ComboBox
+            if (countryId == d.getCountryId()) {
+                divisionsInCountry.add(d);
+            }
+            division.setItems(divisionsInCountry);
+        }
+    }
 
     public void cancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -85,25 +112,6 @@ public class AddCustomer implements Initializable {
             alert.setTitle("Format Error");
             alert.setContentText("Please select a division.");
             alert.showAndWait();
-        }
-    }
-
-    public void selectCountry(ActionEvent actionEvent) {
-        successLabel.setVisible(false);                                                     // hides successLabel on click, resets the label for confirmation of additional saves in one session
-        division.setDisable(false);                                                         // enables division selection after country is selected
-
-        division.setItems(accessDivisions.getAllDivisions());                               // enables all divisions to be selected
-
-        Country selectedCountry = country.getSelectionModel().getSelectedItem();            // captures the selected country object
-        int countryId = selectedCountry.getCountryId();                                     // captures the selected country ID for matching purposes
-        ObservableList<Division> divisionsInCountry = FXCollections.observableArrayList();  // initializes the temporary available divisions per country selection
-        divisionsInCountry.clear();
-
-        for (Division d : division.getItems()) {                                            // loops through all divisions to match selectedCountryId with the d.CountryId and add those matches to our observableList ComboBox
-            if (countryId == d.getCountryId()) {
-                divisionsInCountry.add(d);
-            }
-            division.setItems(divisionsInCountry);
         }
     }
 

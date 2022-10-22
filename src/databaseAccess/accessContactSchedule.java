@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+/**
+ * @Author Jack Compton
+ */
+
 public abstract class accessContactSchedule {
 
     public static ObservableList<ContactSchedule> getAllContactSchedules() {

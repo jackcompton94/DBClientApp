@@ -1,17 +1,11 @@
 package model;
 
-import databaseAccess.accessUsers;
-import reports.UserActivity;
-
-import java.io.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
-import static java.time.ZoneOffset.UTC;
+/**
+ * @Author Jack Compton
+ */
 
 public class User {
 

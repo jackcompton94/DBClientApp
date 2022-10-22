@@ -29,6 +29,10 @@ import java.util.ResourceBundle;
 
 import static java.time.ZoneOffset.UTC;
 
+/**
+ * @Author Jack Compton
+ */
+
 public class AddAppointments implements Initializable {
 
     @FXML
@@ -70,7 +74,10 @@ public class AddAppointments implements Initializable {
     @FXML
     private ComboBox<User> user;
 
-
+    /**
+     * initializes the combo boxes used to capture the desired start and end time for new appointments
+     *
+     */
     public void initTime() {
         ObservableList<Integer> hourTimes = FXCollections.observableArrayList();
         for (int i = 0; i <= 23; i++) {
