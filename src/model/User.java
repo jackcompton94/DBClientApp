@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * @Author Jack Compton
+ * User objects, used for selection in add/edit appointments
  */
 
 public class User {

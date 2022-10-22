@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 /**
  * @Author Jack Compton
+ * Customer object used in Add/Edit Appointments and Customer
  */
 
 public class Customer {

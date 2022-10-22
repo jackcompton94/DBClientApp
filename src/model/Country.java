@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * @Author Jack Compton
+ * Country object used to determine the division selection in Add/Edit Appointment
  */
 
 public class Country {

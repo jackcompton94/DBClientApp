@@ -2,6 +2,7 @@ package model;
 
 /**
  * @Author Jack Compton
+ * Contact object used in View/Edit appointment, and is featured in a report to discern specific schedules for individual contacts
  */
 
 public class Contact {

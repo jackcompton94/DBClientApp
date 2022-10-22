@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * @Author Jack Compton
+ * Appointment object, used to gather information later addressed in reports by type per month
  */
 
 public class Appointment {
