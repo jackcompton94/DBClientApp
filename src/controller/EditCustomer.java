@@ -52,6 +52,11 @@ public class EditCustomer implements Initializable {
     @FXML
     private ComboBox<Division> division;
 
+    /**
+     *
+     * @param customer
+     * "catches" the data "passed" from the ViewCustomers.editCustomer() method
+     */
     public void sendCustomer(Customer customer) {
         customerId.setText(String.valueOf(Integer.valueOf(customer.getCustomerId())));
         customerName.setText(String.valueOf(customer.getCustomerName()));
@@ -117,6 +122,11 @@ public class EditCustomer implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     * selectCountry is a method used to reset the division combo boxed based on the Country selection
+     */
     public void selectCountry(ActionEvent actionEvent) {
         division.setDisable(false);                                                         // enables division selection after country is selected
         division.setValue(null);                                                            // logic control forcing users to reselect division

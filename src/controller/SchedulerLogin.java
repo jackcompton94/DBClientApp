@@ -56,6 +56,14 @@ public class SchedulerLogin implements Initializable {
     @FXML
     private Label password;
 
+    /**
+     *
+     * @param actionEvent
+     * passes the entered username and password into authUser()
+     *
+     * @throws IOException
+     * Signals that an I/O exception of some sort has occurred
+     */
     public void onActionSignIn(ActionEvent actionEvent) throws IOException {
         String user = usernameText.getText();
         String pass = passwordText.getText();
@@ -101,6 +109,12 @@ public class SchedulerLogin implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * on initialization, we check the computers source language and translate the page to French (if French)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // hides invalidLogin alert

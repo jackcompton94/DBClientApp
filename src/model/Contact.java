@@ -28,8 +28,12 @@ public class Contact {
         return email;
     }
 
+    /**
+     *
+     * overrides default Object Class behavior when added to a ComboBox
+     */
     @Override
-    public String toString() {   // overrides default Object Class behavior when added to a ComboBox
+    public String toString() {
         return ("ID [" + getContactId() + "] " + getContactName());
     }
 }

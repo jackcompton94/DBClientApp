@@ -88,8 +88,9 @@ public class EditAppointment implements Initializable {
     }
 
     /**
-     * "catches" the data "passed" from the ViewAppointments.editAppointment() method
+     *
      * @param appointment
+     * "catches" the data "passed" from the ViewAppointments.editAppointment() method
      */
     public void sendAppointment(Appointment appointment) {
         appointmentId.setText(String.valueOf(appointment.getAppointmentId()));

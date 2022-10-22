@@ -52,6 +52,26 @@ public class UserActivity {
         return userActivityRecords;
     }
 
+    /**
+     *
+     * once the username and password are checked against the User table, we create a "login_activity.txt" file to track
+     * the timestamp and success/invalid authentication of the login
+     *
+     * after the line is created, we use the "login_activity.txt" file to input a UserActivity object within the application
+     * that is later used in the "ViewUserActivity" report
+     *
+     * @param user
+     * entered username, checked against User table in MySQL Server
+     *
+     * @param pass
+     * entered user password, checked against User table in MySQL Server
+     *
+     * @return
+     * boolean
+     *
+     * @throws IOException
+     * Signals that an I/O exception of some sort has occurred.
+     */
     public static boolean authUser(String user, String pass) throws IOException {
         for (User u : accessUsers.getAllUsers()) {
             User.currentUser = user;

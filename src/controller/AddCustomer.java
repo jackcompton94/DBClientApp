@@ -54,8 +54,9 @@ public class AddCustomer implements Initializable {
     private Label successLabel;
 
     /**
-     * selectCountry is a method used to reset the division combo boxed based on the Country selection
+     *
      * @param actionEvent
+     * selectCountry is a method used to reset the division combo boxed based on the Country selection
      */
     public void selectCountry(ActionEvent actionEvent) {
         successLabel.setVisible(false);                                                     // hides successLabel on click, resets the label for confirmation of additional saves in one session

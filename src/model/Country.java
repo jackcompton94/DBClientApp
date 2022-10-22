@@ -49,6 +49,10 @@ public class Country {
         return lastUpdatedBy;
     }
 
+    /**
+     * overrides default Object Class behavior when added to a ComboBox
+     *
+     */
     @Override
     public String toString(){   // overrides default Object Class behavior when added to a ComboBox
         return (getCountry());

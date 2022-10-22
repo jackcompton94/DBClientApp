@@ -59,6 +59,11 @@ public class ViewContactSchedule implements Initializable {
     @FXML
     public ComboBox<Contact> contact;
 
+    /**
+     *
+     * @param actionEvent
+     * creates an ObservableList based on the Contact selected within the ComboBox<Contact>
+     */
     public void selectContact(ActionEvent actionEvent) {
         contactScheduleTableView.setItems(accessContactSchedule.getAllContactSchedules());
 
@@ -82,6 +87,13 @@ public class ViewContactSchedule implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * initializes ViewContactSchedule with the necessary column fields
+     * @lambda written to populate the contact combo box ptions
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));

@@ -22,7 +22,13 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     *
+     * @param args
+     * creates the connection to JDBC and enables to communication between MySQL Server and the application
+     *
+     */
+    public static void main(String[] args) {
         JDBC.makeConnection();
         launch(args);
         JDBC.closeConnection();

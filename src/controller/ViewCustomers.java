@@ -76,6 +76,15 @@ public class ViewCustomers implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * editCustomer when selected, takes the selected customer and "passes" the object into the EditCustomerController
+     *
+     * @throws IOException
+     * Signals that an I/O exception of some sort has occurred
+     *
+     */
     public void editCustomer(ActionEvent actionEvent) throws IOException {
         Customer selection = customerTableView.getSelectionModel().getSelectedItem();
 
