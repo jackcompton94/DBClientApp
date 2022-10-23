@@ -91,6 +91,17 @@ public class AddAppointments implements Initializable {
         endMinute.setItems(minuteTimes);
     }
 
+    /**
+     *
+     * @param actionEvent
+     * on save, the application gets text from each required field for the appointment, translates the entered times from SystemDefault to UTC
+     * and defines/checks business hours for confirmation
+     *
+     * try/catch used to catch NullPointerException
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors
+     */
     public void save(ActionEvent actionEvent) throws SQLException {
 
         try {
