@@ -15,6 +15,12 @@ import java.time.LocalDateTime;
 
 public abstract class accessContactSchedule {
 
+    /**
+     * provides an "ordered by start/end time" schedule of each contact from the appointments table
+     *
+     * @return
+     * contactScheduleList
+     */
     public static ObservableList<ContactSchedule> getAllContactSchedules() {
 
         ObservableList<ContactSchedule> contactScheduleList = FXCollections.observableArrayList();

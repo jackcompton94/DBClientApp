@@ -85,6 +85,14 @@ public class AddCustomer implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * on save, the application gets text from all required fields and saves a customer object
+     *
+     * try/catch used to catch NullPointerException
+     * @throws SQLException
+     */
     public void save(ActionEvent actionEvent) throws SQLException {
 
         try {

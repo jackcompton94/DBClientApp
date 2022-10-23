@@ -47,6 +47,14 @@ public class MainMenu implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * gives user a validation before signing out
+     *
+     * @throws IOException
+     * Signals that an I/O exception of some sort has occurred
+     */
     public void signOut(ActionEvent actionEvent) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to sign out of Scheduler?");

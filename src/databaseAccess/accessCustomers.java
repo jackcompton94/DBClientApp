@@ -12,6 +12,12 @@ import java.sql.*;
 
 public abstract class accessCustomers {
 
+    /**
+     * allows Return functionality in the application from the database
+     *
+     * @return
+     * all available rows in the customers table
+     */
     public static ObservableList<Customer> getAllCustomers() {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
         try{
@@ -39,6 +45,15 @@ public abstract class accessCustomers {
         return customerList;
     }
 
+    /**
+     *
+     * insert method used in AddCustomer(), allows Create functionality in the application to the database
+     *
+     * @return
+     * rowsAffected
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int insert(String customerName, String address, String postalCode, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionId) throws SQLException {
         String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -55,6 +70,15 @@ public abstract class accessCustomers {
         return rowsAffected;
     }
 
+    /**
+     * update method used to provide Update functionality in the application from the database
+     *
+     * @return
+     * rowsAffected
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int update(String customerName, String address, String postalCode, String phone, Timestamp lastUpdate, String lastUpdatedBy, int divisionId, int customerId) throws SQLException {
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -70,6 +94,15 @@ public abstract class accessCustomers {
         return rowsAffected;
     }
 
+    /**
+     * delete method provides application Delete functionality in application from the database
+     *
+     * @return
+     * rowsAffected
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int delete(int customerId) throws SQLException {
         String sql = "DELETE FROM customers WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

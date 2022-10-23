@@ -12,6 +12,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * main method, establishes project screen
+ */
 public class Main extends Application {
 
     @Override

@@ -15,6 +15,12 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class accessAppointments {
 
+    /**
+     * provides Read functionality for application to database
+     *
+     * @return
+     * appointmentList
+     */
     public static ObservableList<Appointment> getAllAppointments() {
 
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
@@ -48,6 +54,15 @@ public abstract class accessAppointments {
         return appointmentList;
     }
 
+    /**
+     * provides Create functionality for application to the database
+     *
+     * @return
+     * rowsAffected
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int insert(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -68,6 +83,16 @@ public abstract class accessAppointments {
         return rowsAffected;
     }
 
+    /**
+     *
+     * provides Update functionality in the application to the database
+     *
+     * @return
+     * rowsAffected
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int update(String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId, int appointmentId) throws SQLException {
         String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -87,6 +112,15 @@ public abstract class accessAppointments {
         return rowsAffected;
     }
 
+    /**
+     * provides Delete functionality from the application to the database
+     *
+     * @return
+     * rowsAffected
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public static int delete(int appointmentId) throws SQLException {
         String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

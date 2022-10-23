@@ -121,6 +121,12 @@ public class ViewAppointments implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     * gives user the option to confirm the deletion of an appointment, deletes based on AppointmentID, and finally, refreshes the ObservableList for continuity
+     * @throws SQLException
+     */
     public void deleteAppointment(ActionEvent actionEvent) throws SQLException {
         Appointment selection = appointmentTableView.getSelectionModel().getSelectedItem();
 
@@ -233,6 +239,11 @@ public class ViewAppointments implements Initializable {
         viewCurrentMonth.forEach(Appointment -> appointmentTableView.setItems(viewCurrentMonth));
     }
 
+    /**
+     *
+     * @param actionEvent
+     * allows user to reset TableView to all appointments currently in MySQL Server
+     */
     public void viewAllAppointments(ActionEvent actionEvent) {
         ObservableList<Appointment> allAppointments = accessAppointments.getAllAppointments();
         appointmentTableView.setItems(allAppointments);

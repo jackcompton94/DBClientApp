@@ -12,6 +12,11 @@ import java.sql.*;
 
 public abstract class accessCountries {
 
+    /**
+     * provides all available rows in the countries table
+     * @return
+     * countryList
+     */
     public static ObservableList<Country> getAllCountries() {
 
         ObservableList<Country> countryList = FXCollections.observableArrayList();

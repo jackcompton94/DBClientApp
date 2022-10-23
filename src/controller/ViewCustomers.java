@@ -109,6 +109,14 @@ public class ViewCustomers implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param actionEvent
+     * provides user with confirmation on delete of Customers
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public void deleteCustomer(ActionEvent actionEvent) throws SQLException {
         Customer selection = customerTableView.getSelectionModel().getSelectedItem();
 

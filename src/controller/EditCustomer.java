@@ -85,6 +85,11 @@ public class EditCustomer implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * on save, the application updates the customer based on CustomerID
+     */
     public void save(ActionEvent actionEvent) {
         try {
             String customerNameText = customerName.getText();

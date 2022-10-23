@@ -21,6 +21,9 @@ public abstract class JDBC {
     public static Connection connection = null;  // Connection Interface
     private static PreparedStatement preparedStatement;
 
+    /**
+     * creates necessary connection from the application to the database
+     */
          public static void makeConnection() {
 
           try {
@@ -37,10 +40,19 @@ public abstract class JDBC {
                   }
           }
 
-            public static Connection getConnection() {
+    /**
+     *
+     * @return
+     * connection
+     */
+    public static Connection getConnection() {
                 return connection;
             }
-             public static void closeConnection() {
+
+    /**
+     * closes database connnection
+     */
+    public static void closeConnection() {
                  try {
                      connection.close();
                      System.out.println("Connection closed!");
@@ -49,13 +61,27 @@ public abstract class JDBC {
                  }
              }
 
-       public static void makePreparedStatement(String sqlStatement, Connection conn) throws SQLException {
+    /**
+     * used to accept SQL code strings to the database
+     *
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
+    public static void makePreparedStatement(String sqlStatement, Connection conn) throws SQLException {
            if (conn != null)
                preparedStatement = conn.prepareStatement(sqlStatement);
            else
                System.out.println("Prepared Statement Creation Failed!");
        }
-       public static PreparedStatement getPreparedStatement() throws SQLException {
+
+    /**
+     *
+     * @return
+     * preparedStatement or Null based on conditions
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
+    public static PreparedStatement getPreparedStatement() throws SQLException {
            if (preparedStatement != null)
                return preparedStatement;
            else System.out.println("Null reference to Prepared Statement");

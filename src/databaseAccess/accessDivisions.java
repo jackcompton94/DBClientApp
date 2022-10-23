@@ -12,6 +12,11 @@ import java.sql.*;
 
 public abstract class accessDivisions {
 
+    /**
+     *
+     * @return
+     * divisionList, all currently available rows in the first_level_divisions table
+     */
     public static ObservableList<Division> getAllDivisions() {
 
         ObservableList<Division> divisionList = FXCollections.observableArrayList();

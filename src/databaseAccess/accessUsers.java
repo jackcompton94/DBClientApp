@@ -14,6 +14,11 @@ import java.util.Date;
 
 public abstract class accessUsers {
 
+    /**
+     *
+     * @return
+     * all Users currently available in the users table
+     */
     public static ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
         try{

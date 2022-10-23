@@ -15,6 +15,11 @@ import java.sql.SQLException;
 
 public abstract class accessMonthlyAppointments {
 
+    /**
+     *
+     * @return
+     * monthlyAppointmentList, a query used to provide a report detailing by month and type, the amount of appointments currently in the appointments table
+     */
     public static ObservableList<MonthlyAppointment> getMonthlyAppointments() {
 
         ObservableList<MonthlyAppointment> monthlyAppointmentList = FXCollections.observableArrayList();

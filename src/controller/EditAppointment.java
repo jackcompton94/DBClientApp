@@ -155,6 +155,17 @@ public class EditAppointment implements Initializable {
 
     }
 
+    /**
+     *
+     * @param actionEvent
+     * on save, the application gets all text fields in the required text fields, using the same logic for validating/establishing business hours we then update
+     * the appointment based on AppointmentID
+     *
+     * @throws IOException
+     * Signals that an I/O exception of some sort has occurred
+     * @throws SQLException
+     * An exception that provides information on a database access error or other errors.
+     */
     public void save(ActionEvent actionEvent) throws IOException, SQLException {
 
         try {

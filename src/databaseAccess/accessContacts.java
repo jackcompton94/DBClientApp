@@ -12,6 +12,12 @@ import java.sql.*;
 
 public abstract class accessContacts {
 
+    /**
+     * provides all available rows in the contacts table
+     *
+     * @return
+     * contactList
+     */
     public static ObservableList<Contact> getAllContacts() {
         ObservableList<Contact> contactList = FXCollections.observableArrayList();
         try{
