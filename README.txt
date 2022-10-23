@@ -15,7 +15,8 @@ Jack Compton - jackcompton94@gmail.com
 
 IDE/Java Module: 
 IntelliJ IDEA Community 2021.1.3 x64
-JDK version used: JavaFX-SDK-17.0.1
+JDK version: JavaFX-SDK-17.0.1
+JavaFX version: 11.0.2
  
 
 MySQL Connector: 

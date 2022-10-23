@@ -122,8 +122,8 @@ public class SchedulerLogin implements Initializable {
         invalidLogin.setVisible(false);
 
         // sets ZoneID according to users OS locale
-        Locale currentLocale = Locale.getDefault();
-        zoneId.setText(currentLocale.getDisplayCountry());
+        ZonedDateTime currentLocale = ZonedDateTime.now();
+        zoneId.setText(String.valueOf(currentLocale.getZone()));
 
         // language translator
         try {
