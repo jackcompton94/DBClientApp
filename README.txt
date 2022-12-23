@@ -1,9 +1,7 @@
-PRFA - QAM2 - Software II Advanced Java Concepts
-
 Scheduler (DBClientApp)
 application version: 1.0
 
-Purpose
+Purpose:
 This application is used to manage a customer list, and schedule appointments with customers for the contacts working at the company. 
 Additionally, this application features 3 reports to organize information related to: monthly appointments, individual contact schedules, and user login attempt logs.
 
@@ -32,6 +30,3 @@ View Customers, View Appointments, and View Reports.
 Additional Report:
 User Activity Report - this report accepts the 'login_activity.txt' file as input,
 and creates an object for each login to track who is accessing the Scheduler application.
-
-
-
