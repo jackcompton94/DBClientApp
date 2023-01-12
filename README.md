@@ -12,7 +12,7 @@ JDK version: JavaFX-SDK-17.0.1
 JavaFX version: 11.0.2
  
  
-$ MySQL Connector: 
+# MySQL Connector: 
 mysql-connector-java-8.0.25
 
 
